@@ -99,6 +99,9 @@ always_comb begin
     //this is the opcode of the function
     opcode = [6:0];
 
+    //This is the branchcode, which indicates what Branch instruction is to be done.
+    branchcode = [14:12];
+
     //this is the specific bits needed for an ALU instruction:
     ALUopcode = {Instruction[31], Instruction[14:12]}
 
@@ -292,7 +295,7 @@ always_comb begin
     end
 
     //this is the case for Add upper immidiate to PC (x[rd] = PC + upImm) NOTE: This does not jump
-    7'b0010111; begin
+    7'b0010111: begin
 
         //this is ALUop1, so needs to be 0 as adding 0 + upImm + PC = upImm + PC, which needs to be stored in rd
         assign Rdadd1 = r0;
@@ -329,37 +332,250 @@ always_comb begin
     instructions are the conditionals in the "if statements" on the branch instructions
 
     Each branch instruction also has conditionals inside them, as the decode block determines wether to jump or not
+
+    --SOMEONE CHECK --
+    The instruction can actually be completed in the same cycle because the instruction is done, zero flag is set, then theres
+    technically a small delay, but then the zero flag is set. and PC is changed on the next cycle
+
     */
 
-    //This is the beq, branch equal, instruction. To run this, if the values to test are stored in r1 and r2, you must run the 
-    //operation sub r1 r2 rd => x[rd] = x[r1] - x[r2]. Thus, if ZERO = 1, they are equal, else they are not equal
-    7'b1100011; begin
+    //this is the opcode for a branch instruction
+    7'b1100011: begin
 
-        //
-        assign Rdadd1 = ;
-        //
-        assign Rdadd2 = ;
-        //
-        assign WrAddr = ;
-        //
-        assign RegWrite = 0'b;
-        //ALU is reading immidiate for offset
-        assign ALUsrc = 1'b;
-        //
-        assign ALUctrl = 4'b;
-        //No use for data memory
-        assign ResultSrc = 1'b;
-        //
-        assign PCSrc = 0';
-        //pass whole immidiate value
-        assign ImmOp = ;
-        //want the immidiate for the upper Immidiate
-        assign Immsrc = 3'b;
-        //
-        assign MemWrite = 1';
-        //output only needed for x[rd] = PC + upImm
-        assign PC = [PCWIDTH]'b0000;
+        //all branch instructions have their own branchcode, but the same opcode
+        case(branchcode)
+        //This is the beq, branch equal, the test is r1 r2 rd => x[rd] = x[r1] - x[r2].
+        //Thus, if ZERO = 1, they are equal, else they are not equal
+        3'b000: begin
+            
+            //the two registers in question
+            assign Rdadd1 = rs1;
+            assign Rdadd2 = rs2;
 
+            //not writing so set to 0
+            assign WrAddr = r0;
+            assign RegWrite = 1'b0;
+
+            //ALU instruction can be completed the same cycle, just ignore a small delay
+            // need to do rs2 - rs1 to see if they are equal
+            //using register not immidiate  
+            assign ALUsrc = 1'b0
+            assign ALUctrl = 4'b1000;
+            //want result from ALU
+            assign ResultSrc = 1'b0;
+
+            //if zero = 1, PCsrc = jump output
+            assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
+
+            //pass the immidiate and take the immidiate for branch instructions
+            assign ImmOp = Imm;
+            assign Immsrc = 3'b111;
+
+            //not writing to memory
+            assign MemWrite = 1'b0;
+            ////output only needed for instruction x[rd] = PC + upImm
+            assign PC = [PCWIDTH-1]'b0;
+
+        end
+
+        //This is the bne, branch equal, the test is r1 r2 rd => x[rd] = x[r1] - x[r2].
+        //Thus, if ZERO = 0, they are equal, else they are not equal
+        3'b001: begin
+            
+            //the two registers in question
+            assign Rdadd1 = rs1;
+            assign Rdadd2 = rs2;
+
+            //not writing so set to 0
+            assign WrAddr = r0;
+            assign RegWrite = 1'b0;
+
+            //ALU instruction can be completed the same cycle, just ignore a small delay
+            // need to do rs2 - rs1 to see if they are equal
+            //using register not immidiate  
+            assign ALUsrc = 1'b0
+            assign ALUctrl = 4'b1000;
+            //want result from ALU
+            assign ResultSrc = 1'b0;
+
+            //if zero = 1, PCsrc = jump output
+            //this is the only change from beq
+            assign PCSrc = (ZERO == 1) ? 1'b0 : 1'b1;
+
+            //pass the immidiate and take the immidiate for branch instructions
+            assign ImmOp = Imm;
+            assign Immsrc = 3'b111;
+
+            //not writing to memory
+            assign MemWrite = 1'b0;
+            ////output only needed for instruction x[rd] = PC + upImm
+            assign PC = [PCWIDTH-1]'b0;
+
+        end
+
+        //This is the blt, branch less than (signed), the test is r1 r2 rd => x[rd] = x[r1] < x[r2].
+        //Thus, if ZERO = 1, x[r1] < x[r2], PCsrc = jump output
+        3'b100: begin
+            
+            //the two registers in question
+            assign Rdadd1 = rs1;
+            assign Rdadd2 = rs2;
+
+            //not writing so set to 0
+            assign WrAddr = r0;
+            assign RegWrite = 1'b0;
+
+            //ALU instruction can be completed the same cycle, just ignore a small delay
+            // need to do rs2 < rs1 to see if they are equal
+            //using register not immidiate  
+            assign ALUsrc = 1'b0
+            assign ALUctrl = 4'b0010;
+            //want result from ALU
+            assign ResultSrc = 1'b0;
+
+            //if zero = 1, x[r1] > x[r2], PCsrc = jump output
+            assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
+
+            //pass the immidiate and take the immidiate for branch instructions
+            assign ImmOp = Imm;
+            assign Immsrc = 3'b111;
+
+            //not writing to memory
+            assign MemWrite = 1'b0;
+            ////output only needed for instruction x[rd] = PC + upImm
+            assign PC = [PCWIDTH-1]'b0;
+
+        end
+
+        //This is the blt, branch less than (signed), the test is r1 r2 rd => x[rd] = x[r1] < x[r2].
+        //Thus, if ZERO = 1, x[r1] < x[r2], PCsrc = jump output
+        3'b110: begin
+            
+            //the two registers in question
+            assign Rdadd1 = rs1;
+            assign Rdadd2 = rs2;
+
+            //not writing so set to 0
+            assign WrAddr = r0;
+            assign RegWrite = 1'b0;
+
+            //ALU instruction can be completed the same cycle, just ignore a small delay
+            // need to do rs1 > rs2 (signed) to see if they are equal
+            //using register not immidiate  
+            assign ALUsrc = 1'b0
+            assign ALUctrl = 4'b0011;
+            //want result from ALU
+            assign ResultSrc = 1'b0;
+
+            //if zero = 1, x[r1] > x[r2], PCsrc = jump output
+            assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
+
+            //pass the immidiate and take the immidiate for branch instructions
+            assign ImmOp = Imm;
+            assign Immsrc = 3'b111;
+
+            //not writing to memory
+            assign MemWrite = 1'b0;
+            ////output only needed for instruction x[rd] = PC + upImm
+            assign PC = [PCWIDTH-1]'b0;
+
+        end
+
+        //these are the greater than/equal to branches, which is just the opposite of the less than branches
+        //this means theyre the same with the opposite "assign PCSrc = ... " lines
+
+
+        //This is the bge, branch greater than (signed), the test is r1 r2 rd => x[rd] = x[r1] > x[r2].
+        //Thus, if ZERO = 1, x[r1] > x[r2], PCsrc = jump output
+        3'b100: begin
+            
+            //the two registers in question
+            assign Rdadd1 = rs1;
+            assign Rdadd2 = rs2;
+
+            //not writing so set to 0
+            assign WrAddr = r0;
+            assign RegWrite = 1'b0;
+
+            //ALU instruction can be completed the same cycle, just ignore a small delay
+            // need to do rs2 < rs1 to see if they are equal
+            //using register not immidiate  
+            assign ALUsrc = 1'b0
+            assign ALUctrl = 4'b0010;
+            //want result from ALU
+            assign ResultSrc = 1'b0;
+
+            //if zero = 1, x[r1] > x[r2], PCsrc = jump output
+            assign PCSrc = (ZERO == 1) ? 1'b0 : 1'b1;
+
+            //pass the immidiate and take the immidiate for branch instructions
+            assign ImmOp = Imm;
+            assign Immsrc = 3'b111;
+
+            //not writing to memory
+            assign MemWrite = 1'b0;
+            ////output only needed for instruction x[rd] = PC + upImm
+            assign PC = [PCWIDTH-1]'b0;
+
+        end
+
+        //This is the bgeu, branch greater than (unsigned signed), the test is r1 r2 rd => x[rd] = x[r1] < x[r2].
+        //Thus, if ZERO = 1, x[r1] > x[r2], PCsrc = jump output
+        3'b110: begin
+            
+            //the two registers in question
+            assign Rdadd1 = rs1;
+            assign Rdadd2 = rs2;
+
+            //not writing so set to 0
+            assign WrAddr = r0;
+            assign RegWrite = 1'b0;
+
+            //ALU instruction can be completed the same cycle, just ignore a small delay
+            // need to do rs1 < rs2 (signed) to see if they are equal
+            //using register not immidiate  
+            assign ALUsrc = 1'b0
+            assign ALUctrl = 4'b0011;
+            //want result from ALU
+            assign ResultSrc = 1'b0;
+
+            //if zero = 1, x[r1] > x[r2], PCsrc = jump output
+            assign PCSrc = (ZERO == 1) ? 1'b0 : 1'b1;
+
+            //pass the immidiate and take the immidiate for branch instructions
+            assign ImmOp = Imm;
+            assign Immsrc = 3'b111;
+
+            //not writing to memory
+            assign MemWrite = 1'b0;
+            ////output only needed for instruction x[rd] = PC + upImm
+            assign PC = [PCWIDTH-1]'b0;
+
+        end
+
+
+
+
+        //default function is add 0 to r0, but does not write to data memory
+        //so an invalid opcode is another way of doing a noOp
+        default: begin
+
+            assign Rdadd1 = [RDADDR1W-1]'b0;
+            assign Rdadd2 = [RDADDR1W-1]'b0;
+            assign WrAddr = [WRADDR1W-1]'b0;
+            assign RegWrite = 1'b0;
+            assign ALUsrc = 1'b1;
+            assign ALUctrl = 4'b0;
+            assign ResultSrc = 1'b0;
+            assign PCSrc = 1'b0;
+            assign ImmOp = 12'b0;
+            assign Immsrc = 3'b000;
+            assign MemWrite = 0'b0;
+            assign PC = [PCWIDTH-1]'b0;
+
+        end
+
+        endcase
     end
 
 

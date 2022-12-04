@@ -13,6 +13,7 @@ module Sign_Extend (
 010: 31:25, store Immidiate
 100: Load Instructions
 011: 30:21 and 19:12, jump store (see Lecture 6 slide 25)
+111: branch instructions
 
 
 
