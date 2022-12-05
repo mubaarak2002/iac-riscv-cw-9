@@ -4,7 +4,7 @@ module ProgramCounter#(
 )(
     input logic     clk, rst,
     input logic     PCsrc,
-    input logic     [PC_WIDTH-1:0] ImmOp,
+    input logic     [PC_WIDTH-1:0] PC_Target,
     output logic    [PC_WIDTH-1:0] PC
 );
 
@@ -17,7 +17,7 @@ module ProgramCounter#(
     always_comb begin
 
     inc_PC = PC + {{(PC_WIDTH-3){1'b0}}, 3'b100}
-    branch_PC = ImmOp + PC
+    branch_PC = PC_Target + PC
 
     if (PCsrc) next_PC = branch_PC;
     else next_PC = inc_PC;
