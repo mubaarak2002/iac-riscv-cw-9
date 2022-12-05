@@ -1,6 +1,6 @@
 module ProgramCounter#(
     //PC width
-    parameter PC_WIDTH = 32,
+    parameter PC_WIDTH = 16,
     parameter DATA_WIDTH = 32
 )(
     input logic     clk, rst,
@@ -10,8 +10,8 @@ module ProgramCounter#(
 );
 
     //Adders. Uses combinational logic.
-    logic [PC_WIDTH-1:0] inc_PC = PC + {{(DATA_WIDTH-3){1'b0}}, 3'b100};
-    logic [PC_WIDTH-1:0] branch_PC = ImmOp + PC;
+    logic [PC_WIDTH-1:0] inc_PC = PC + {{(PC_WIDTH-3){1'b0}}, 3'b100};
+    logic [PC_WIDTH-1:0] branch_PC = ImmOp[PC_WIDTH-1:0] + PC;
     logic [PC_WIDTH-1:0] next_PC;
     
     //multiplexer, uses combinational logic. Selects either a branch or PC + 4.
