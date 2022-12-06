@@ -3,7 +3,9 @@ module PCreg #(
     parameter DATA_WIDTH = 32
 
 ) (
-    input logic                    clk, rst,
+    input logic                    clk, 
+    //change back to one line once its working
+    input logic                    rst,
     input logic  [DATA_WIDTH-1:0]  New_PC,
     output logic [DATA_WIDTH-1:0]  Current_PC 
 );

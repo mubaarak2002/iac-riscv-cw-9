@@ -107,7 +107,7 @@ mux_2 PC_Mux (
 
 );
 
-PC_reg PC_reg (
+PC_reg PCreg (
 
     .clk          (clk),
     .rst          (rst),
