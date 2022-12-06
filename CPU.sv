@@ -94,6 +94,10 @@ PC_Mux mux_2 (
 
 );
 
+PCreg PC_reg (
+
+);
+
 InstrMem instr_mem (
 
 );
