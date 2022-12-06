@@ -117,8 +117,8 @@ always_comb begin
     7'b0110011:begin
 
         //addresses, because no immidiate operands, all register addresses are used
-        assign Rdadd1 = rs1;
-        assign Rdadd2 = rs2;
+        assign RdAdd1 = rs1;
+        assign RdAdd2 = rs2;
         assign WrAddr = rd;
         //output must be written to the register address
         assign RegWrite = 1'b1;
@@ -146,9 +146,9 @@ always_comb begin
     7'b0010011: begin
 
         //addresses, because no immidiate operands, all register addresses are used
-        assign Rdadd1 = rs1;
+        assign RdAdd1 = rs1;
         //rs2 will not be selected so is irrelevant
-        assign Rdadd2 = r0;
+        assign RdAdd2 = r0;
         assign WrAddr = rd;
         //output must be written to the register address
         assign RegWrite = 1'b1;
@@ -176,9 +176,9 @@ always_comb begin
     7'b0100011: begin
 
         //memory address register location
-        assign Rdadd1 = rs1;
+        assign RdAdd1 = rs1;
         //data to be stored
-        assign Rdadd2 = rs2;
+        assign RdAdd2 = rs2;
         //not writing so doesnt matter
         assign WrAddr = r0;
         //no need to write becasue are storing in memory not registers
@@ -206,9 +206,9 @@ always_comb begin
     7'b0000011: begin
 
         //memory address register location
-        assign Rdadd1 = rs1;
+        assign RdAdd1 = rs1;
         //doesn't matter as immidiate operand is being used
-        assign Rdadd2 = r0;
+        assign RdAdd2 = r0;
         //storage register address location
         assign WrAddr = rs2;
         //writing value to a register, so need to enable Write Enable
@@ -236,9 +236,9 @@ always_comb begin
     7'b1101111: begin
 
         //read data from register 1 (doesnt matter)
-        assign Rdadd1 = rs1;
+        assign RdAdd1 = rs1;
         //read data from register 2 (doesnt matter)
-        assign Rdadd2 = rs2;
+        assign RdAdd2 = rs2;
         //write new PC to register rd
         assign WrAddr = rd;
         //need to write return address to register
@@ -268,9 +268,9 @@ always_comb begin
     7'b0110111: begin
 
         //this is ALUop1, so needs to be 0 as adding 0 + upImm = upImm, which needs to be stored in rd
-        assign Rdadd1 = r0;
+        assign RdAdd1 = r0;
         //doesn't matter as immidiate operand is being used 
-        assign Rdadd2 = r0;
+        assign RdAdd2 = r0;
         //storage register address location
         assign WrAddr = rd;
         //writing value to a register, so need to enable Write Enable
@@ -298,9 +298,9 @@ always_comb begin
     7'b0010111: begin
 
         //this is ALUop1, so needs to be 0 as adding 0 + upImm + PC = upImm + PC, which needs to be stored in rd
-        assign Rdadd1 = r0;
+        assign RdAdd1 = r0;
         //doesn't matter as immidiate operand is being used 
-        assign Rdadd2 = r0;
+        assign RdAdd2 = r0;
         //storage register address location
         assign WrAddr = rd;
         //writing value to a register, so need to enable Write Enable
@@ -349,8 +349,8 @@ always_comb begin
         3'b000: begin
             
             //the two registers in question
-            assign Rdadd1 = rs1;
-            assign Rdadd2 = rs2;
+            assign RdAdd1 = rs1;
+            assign RdAdd2 = rs2;
 
             //not writing so set to 0
             assign WrAddr = r0;
@@ -383,8 +383,8 @@ always_comb begin
         3'b001: begin
             
             //the two registers in question
-            assign Rdadd1 = rs1;
-            assign Rdadd2 = rs2;
+            assign RdAdd1 = rs1;
+            assign RdAdd2 = rs2;
 
             //not writing so set to 0
             assign WrAddr = r0;
@@ -418,8 +418,8 @@ always_comb begin
         3'b100: begin
             
             //the two registers in question
-            assign Rdadd1 = rs1;
-            assign Rdadd2 = rs2;
+            assign RdAdd1 = rs1;
+            assign RdAdd2 = rs2;
 
             //not writing so set to 0
             assign WrAddr = r0;
@@ -452,8 +452,8 @@ always_comb begin
         3'b110: begin
             
             //the two registers in question
-            assign Rdadd1 = rs1;
-            assign Rdadd2 = rs2;
+            assign RdAdd1 = rs1;
+            assign RdAdd2 = rs2;
 
             //not writing so set to 0
             assign WrAddr = r0;
@@ -490,8 +490,8 @@ always_comb begin
         3'b100: begin
             
             //the two registers in question
-            assign Rdadd1 = rs1;
-            assign Rdadd2 = rs2;
+            assign RdAdd1 = rs1;
+            assign RdAdd2 = rs2;
 
             //not writing so set to 0
             assign WrAddr = r0;
@@ -524,8 +524,8 @@ always_comb begin
         3'b110: begin
             
             //the two registers in question
-            assign Rdadd1 = rs1;
-            assign Rdadd2 = rs2;
+            assign RdAdd1 = rs1;
+            assign RdAdd2 = rs2;
 
             //not writing so set to 0
             assign WrAddr = r0;
@@ -560,15 +560,15 @@ always_comb begin
         //so an invalid opcode is another way of doing a noOp
         default: begin
 
-            assign Rdadd1 = {(RDADDR1W){1'b0}};
-            assign Rdadd2 = {(RDADDR1W){1'b0}};
+            assign RdAdd1 = {(RDADDR1W){1'b0}};
+            assign RdAdd2 = {(RDADDR1W){1'b0}};
             assign WrAddr = {(WRADDRW){1'b0}};
             assign RegWrite = 1'b0;
             assign ALUsrc = 1'b1;
             assign ALUctrl = 4'b0;
             assign ResultSrc = 1'b0;
             assign PCSrc = 1'b0;
-            assign ImmOp = 12'b0;
+            assign ImmOp = 25'b0;
             assign Immsrc = 3'b000;
             assign MemWrite = 0'b0;
             assign PC = {(PCWIDTH){1'b0}};
@@ -584,15 +584,15 @@ always_comb begin
     //so an invalid opcode is another way of doing a noOp
     default: begin
 
-        assign Rdadd1 = {(RDADDR1W){1'b0}};
-        assign Rdadd2 = {(RDADDR1W){1'b0}};
+        assign RdAdd1 = {(RDADDR1W){1'b0}};
+        assign RdAdd2 = {(RDADDR1W){1'b0}};
         assign WrAddr = {(WRADDRW){1'b0}};
         assign RegWrite = 1'b0;
         assign ALUsrc = 1'b1;
         assign ALUctrl = 4'b0;
         assign ResultSrc = 1'b0;
         assign PCSrc = 1'b0;
-        assign ImmOp = 12'b0;
+        assign ImmOp = 25'b0;
         assign Immsrc = 3'b000;
         assign MemWrite = 0'b0;
         assign PC = {(PCWIDTH){1'b0}};
