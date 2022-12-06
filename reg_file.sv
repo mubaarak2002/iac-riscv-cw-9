@@ -1,6 +1,6 @@
 module reg_file #(
-    paramater WORD_WIDTH = 32,
-                ADDRESS_WIDTH = 5
+    parameter WORD_WIDTH = 32,
+    parameter ADDRESS_WIDTH = 5
 )(
     input logic                      clk,
     input logic  [ADDRESS_WIDTH-1:0] RA1, 
