@@ -1,10 +1,10 @@
-module instr_mem #(
+module Data_Memory #(
     parameter ADDRESS_WIDTH=16, 
                 DATA_WIDTH = 32
 )(
-    input logic [ADDRESS_WIDTH-1:0]     ALUresult,
-    input logic                         clk, WE,
-    input logic [ADDRESS_WIDTH-1:0]     WriteData,
+    input logic [DATA_WIDTH-1:0]     ALUresult,
+    input logic                         clk, WEN,
+    input logic [DATA_WIDTH-1:0]     WriteData,
     output logic [DATA_WIDTH-1:0]       ReadData
 );
 
@@ -16,8 +16,8 @@ module instr_mem #(
     end;
 
     always_ff @(posedge clk) begin
-        if (WEN) rom_array[ALUresult] = WriteData;
-        ReadData = rom_array[ALUresult];
+        if (WEN) rom_array[ALUresult[ADDRESS_WIDTH-1:0]] <= WriteData;
+        ReadData <= rom_array[ALUresult[ADDRESS_WIDTH-1:0]];
     end
 
 
