@@ -2,12 +2,12 @@ module reg_file #(
     paramater WORD_WIDTH = 32,
                 ADDRESS_WIDTH = 5
 )(
+    input logic                      clk,
     input logic  [ADDRESS_WIDTH-1:0] RA1, 
     input logic  [ADDRESS_WIDTH-1:0] RA2,
     input logic  [ADDRESS_WIDTH-1:0] WA3,
-    input logic  [WORD_WIDTH-1:0]    WD3
+    input logic  [WORD_WIDTH-1:0]    WD3,
     input logic                      WEN,
-    input logic                      clk,
     output logic [WORD_WIDTH-1:0]    RD1,
     output logic [WORD_WIDTH-1:0]    RD2
 );
