@@ -20,10 +20,17 @@ initial begin
 end
 
 always_comb begin 
+<<<<<<< HEAD
     instrByte1 = rom_array[PC+3];
     instrByte2 = rom_array[PC+2];
     instrByte3 = rom_array[PC+1];
     instrByte4 = rom_array[PC];
+=======
+    instrByte4 = rom_array[PC];
+    instrByte3 = rom_array[PC+1];
+    instrByte2 = rom_array[PC+2];
+    instrByte1 = rom_array[PC+3];
+>>>>>>> b47f4de (changed byte order)
     instr = {instrByte4, instrByte3, instrByte2, instrByte1};
 end
 
