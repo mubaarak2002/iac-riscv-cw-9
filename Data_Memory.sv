@@ -15,10 +15,12 @@ module instr_mem #(
         $readmemh("instr.mem", rom_array);
     end;
 
-    always_ff @(posedge clk) 
+    always_ff @(posedge clk) begin
         if (WEN) rom_array[ALUresult] = WriteData;
+    end
 
-    always_comb
+    always_comb begin
         ReadData = rom_array[ALUresult];
-
+    end
+    
 endmodule
