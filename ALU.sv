@@ -35,10 +35,10 @@ always_comb
         4'b0001: SUM = ALUop1 << ALUop2[4:0]; //shift Left Logical
         //fix for signed 
         4'b0010: SUM = ($signed(ALUop1) < $signed(ALUop2)) ? 32'b1 : 32'b0; //SLT (set less than)
-        4'b0011: SUM = (ALUop1 < ALUop2) ? 32'b1 : 32'b0;; //set less than (unsigned)
+        4'b0011: SUM = (ALUop1 < ALUop2) ? 32'b1 : 32'b0; //set less than (unsigned)
         4'b0100: SUM = ALUop1 ^ ALUop2; //bitwise XOR
         4'b0101: SUM = ALUop1 >> ALUop2[4:0]; //shift Right Logical
-        4'b1101: SUM = ALUop1 >>> ALUip2[4:0]; //shift right arithmatic (func7[5] == 1)
+        4'b1101: SUM = ALUop1 >>> ALUop2[4:0]; //shift right arithmatic (func7[5] == 1)
         4'b0110: SUM = ALUop1 | ALUop2;//OR
         4'b0111: SUM = ALUop1 & ALUop2;//and
         default: SUM = 32'b0;
