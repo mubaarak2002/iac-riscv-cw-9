@@ -1,17 +1,19 @@
-module CPU #(
+module cpu #(
     parameter ADDRESS_WIDTH = 5,
     parameter DATA_WIDTH = 32,
     parameter INSTR_WIDTH = 32,
-    parameter ADDRESS_WIDTH = 32,
+    //remove if I forget to remove this <3 - Omar
+    //parameter ADDRESS_WIDTH = 32,
     parameter PC_WIDTH = 32,
     parameter ALUCTRL_WIDTH = 4,
     parameter IMMSRC_WIDTH = 3,
     parameter IMMOP_WIDTH = 25
 
 
-)(
+) (
 
-    input logic                   clk, rst,
+    input logic                   clk, 
+    input logic                   rst,
 
     //these are all the debugging outputs, its all internal signals
     //all will be recorded, and show the ones wanted on GTKWave
@@ -79,12 +81,12 @@ logic [ADDRESS_WIDTH-1:0] WA3;
 logic [INSTR_WIDTH-1:0] Instr;
 logic [ALUCTRL_WIDTH-1:0] ALUctrl;
 logic ALUsrc;
-logic [IMMSELW-1:0] ImmSel;
+logic [IMMSRC_WIDTH-1:0] ImmSel;
 logic [ImmOp-1:0] ImmOp;
 logic [DATA_WIDTH-1:0] ImmExt;
 logic [DATA_WIDTH-1:0] ALU_OP2;
 logic [DATA_WIDTH-1:0] ALU_Result;
-logic [DATA_WIDTH-1:0] Data_Out;
+logic [DATA_WIDTH-1:0] DOut;
 logic [DATA_WIDTH-1:0] Memory_Read;
 
 
@@ -114,7 +116,7 @@ PCreg PC_reg (
 
 );
 
-InstrMem instr_mem (
+PCMem instr_mem (
 
     .PC       (PC_Next_Cycle),
     .instr    (Instr)
@@ -128,7 +130,7 @@ PCInc pc_inc (
 
 );
 
-Decode Decode (
+Decoder Decode (
 
     .Instruction  (Instr),
     .ZERO         (zero),
@@ -154,7 +156,7 @@ RegFile reg_file (
     .RA1      (RA1),
     .RA2      (RA2),
     .WA3      (WA3),
-    .WD3      (Data_Out),
+    .WD3      (DOut),
     .WEN      (WEn),
     .RD1      (RD1),
     .RD2      (RD2)
@@ -184,13 +186,13 @@ ALU ALU (
 
     .ALUCtrl  (ALUctrl),
     .ALUop1   (RD1),
-    .ALUop)   (ALU_OP2),
+    .ALUop2   (ALU_OP2),
     .SUM      (ALU_Result),
     .ZERO     (zero)
 
 );
 
-MemFile instr_mem (
+MemFile Data_Memory (
     .ALUresult    (Data_Out),
     .clk          (clk),
     .WE           (MemWrite),
@@ -203,7 +205,7 @@ DoutMux mux_2 (
     .option0  (ALU_Result),
     .option1  (Memory_Read),
     .sel      (ResultSrc),
-    .dout     (Data_Out)
+    .dout     (DOut)
 
 );
 
@@ -231,10 +233,11 @@ assign MemWrite_Out = MemWrite;
 assign ALUctrl_Out = ALUctrl;
 assign ALUsrc_Out = ALUsrc;
 assign Immsrc_Out = ImmSel;
-assign RegWrite_Out = Wen;
+assign RegWrite_Out = WEn;
 assign ImmOp_Out = ImmOp;
 assign Decode_PC_Out = PC_to_PCreg;
 assign WrAddr_Out = WA3;
+assign Data_Out = DOut;
 
 
 end

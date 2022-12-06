@@ -137,7 +137,7 @@ always_comb begin
         //not writing to memory
         assign MemWrite = 0'b0;
         //output only needed for x[rd] = PC + upImm
-        assign PC = [PCWIDTH-1]'b0;
+        assign PC = {PCWIDTH-1{1'b0}};
 
     end
 
@@ -168,7 +168,7 @@ always_comb begin
         //not writing to memory
         assign MemWrite = 0'b0;
         //output only needed for x[rd] = PC + upImm
-        assign PC = [PCWIDTH-1]'b0;
+        assign PC = {PCWIDTH-1{1'b0}};
 
     end
 
@@ -198,7 +198,7 @@ always_comb begin
         //write to memory
         assign MemWrite = 1'b1;
         //output only needed for x[rd] = PC + upImm
-        assign PC = [PCWIDTH-1]'b0;
+        assign PC = {PCWIDTH-1{1'b0}};
 
     end
 
@@ -228,7 +228,7 @@ always_comb begin
         //need to write to data memory
         assign MemWrite = 1'b1;
         //output only needed for x[rd] = PC + upImm
-        assign PC = [PCWIDTH-1]'b0;
+        assign PC = {PCWIDTH-1{1'b0}};
 
     end
 
@@ -258,7 +258,7 @@ always_comb begin
         //not writing to memory
         assign MemWrite = 1'b0;
         //output only needed for x[rd] = PC + upImm
-        assign PC = [PCWIDTH-1]'b0;
+        assign PC = {PCWIDTH-1{1'b0}};
 
     end
 
@@ -290,7 +290,7 @@ always_comb begin
         //not writing to memory
         assign MemWrite = 1'b0;
         //output only needed for x[rd] = PC + upImm
-        assign PC = [PCWIDTH-1]'b0;
+        assign PC = {PCWIDTH-1{1'b0}};
 
     end
 
@@ -320,7 +320,7 @@ always_comb begin
         //not writing to memory
         assign MemWrite = 1'b0;
         //need to subtract 4 because input is PC_next, which has 4 added to it
-        assign PC = PC_next - [PCWIDTH]'b0100;
+        assign PC = PC_next - {WIDTH-4{4'b0100}};
 
     end
 
@@ -374,7 +374,7 @@ always_comb begin
             //not writing to memory
             assign MemWrite = 1'b0;
             ////output only needed for instruction x[rd] = PC + upImm
-            assign PC = [PCWIDTH-1]'b0;
+            assign PC = {WIDTH-1{1'b0}};
 
         end
 
@@ -409,7 +409,7 @@ always_comb begin
             //not writing to memory
             assign MemWrite = 1'b0;
             ////output only needed for instruction x[rd] = PC + upImm
-            assign PC = [PCWIDTH-1]'b0;
+            assign PC = {PCWIDTH-1{1'b0}};
 
         end
 
@@ -443,7 +443,7 @@ always_comb begin
             //not writing to memory
             assign MemWrite = 1'b0;
             ////output only needed for instruction x[rd] = PC + upImm
-            assign PC = [PCWIDTH-1]'b0;
+            assign PC = {PCWIDTH-1{1'b0}};
 
         end
 
@@ -477,7 +477,7 @@ always_comb begin
             //not writing to memory
             assign MemWrite = 1'b0;
             ////output only needed for instruction x[rd] = PC + upImm
-            assign PC = [PCWIDTH-1]'b0;
+            assign PC = {PCWIDTH-1{1'b0}};
 
         end
 
@@ -515,7 +515,7 @@ always_comb begin
             //not writing to memory
             assign MemWrite = 1'b0;
             ////output only needed for instruction x[rd] = PC + upImm
-            assign PC = [PCWIDTH-1]'b0;
+            assign PC = {PCWIDTH-1{1'b0}};
 
         end
 
@@ -549,7 +549,7 @@ always_comb begin
             //not writing to memory
             assign MemWrite = 1'b0;
             ////output only needed for instruction x[rd] = PC + upImm
-            assign PC = [PCWIDTH-1]'b0;
+            assign PC = {PCWIDTH-1{1'b0}};
 
         end
 
@@ -560,9 +560,9 @@ always_comb begin
         //so an invalid opcode is another way of doing a noOp
         default: begin
 
-            assign Rdadd1 = [RDADDR1W-1]'b0;
-            assign Rdadd2 = [RDADDR1W-1]'b0;
-            assign WrAddr = [WRADDR1W-1]'b0;
+            assign Rdadd1 = {RDADDR1W-1{1'b0}};
+            assign Rdadd2 = {RDADDR1W-1{1'b0}};
+            assign WrAddr = {RDADDR1W-1{1'b0}};
             assign RegWrite = 1'b0;
             assign ALUsrc = 1'b1;
             assign ALUctrl = 4'b0;
@@ -571,7 +571,7 @@ always_comb begin
             assign ImmOp = 12'b0;
             assign Immsrc = 3'b000;
             assign MemWrite = 0'b0;
-            assign PC = [PCWIDTH-1]'b0;
+            assign PC = {PCWIDTH-1{1'b0}};
 
         end
 
@@ -584,9 +584,9 @@ always_comb begin
     //so an invalid opcode is another way of doing a noOp
     default: begin
 
-        assign Rdadd1 = [RDADDR1W-1]'b0;
-        assign Rdadd2 = [RDADDR1W-1]'b0;
-        assign WrAddr = [WRADDR1W-1]'b0;
+        assign Rdadd1 = {RDADDR1W-1{1'b0}};
+        assign Rdadd2 = {RDADDR1W-1{1'b0}};
+        assign WrAddr = {RDADDR1W-1{1'b0}};
         assign RegWrite = 1'b0;
         assign ALUsrc = 1'b1;
         assign ALUctrl = 4'b0;
@@ -595,7 +595,7 @@ always_comb begin
         assign ImmOp = 12'b0;
         assign Immsrc = 3'b000;
         assign MemWrite = 0'b0;
-        assign PC = [PCWIDTH-1]'b0;
+        assign PC = {PCWIDTH-1{1'b0}};
 
     end
     endcase
