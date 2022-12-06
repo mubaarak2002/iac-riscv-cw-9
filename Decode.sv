@@ -1,4 +1,4 @@
-module Decode (
+module Decode #(
 
     //input parameters
     parameter INSTRW = 32,
@@ -45,7 +45,7 @@ module Decode (
     //immidiate Outputs
     output logic [IMMOPW-1:0]     ImmOp,
     output logic [IMMSEL-1:0]     Immsrc,
-    output logic [PCWIDTH-1:0]    PC
+    output logic [PCWIDTH-1:0]    PC,
 
     //PC outputs
     output logic                  PCSrc
@@ -97,13 +97,13 @@ always_comb begin
 */
 
     //this is the opcode of the function
-    opcode = [6:0];
+    opcode = Instruction [6:0];
 
     //This is the branchcode, which indicates what Branch instruction is to be done.
-    branchcode = [14:12];
+    branchcode = Instruction [14:12];
 
     //this is the specific bits needed for an ALU instruction:
-    ALUopcode = {Instruction[31], Instruction[14:12]}
+    ALUopcode = {Instruction[31], Instruction[14:12]};
 
 
     //now that the predetermined signals are defined, all possible opcodes can be considered
@@ -244,7 +244,7 @@ always_comb begin
         //need to write return address to register
         assign RegWrite = 1'b1;
         //ALU is cut off from calculations due to the jump_calc Block
-        assign ALUsrc = 1'b1`;
+        assign ALUsrc = 1'b1;
         //ALU is cut off from calculations due to the jump_calc Block
         assign ALUctrl = 4'b0;
         //doesnt matter as not being stored anywhere
@@ -359,7 +359,7 @@ always_comb begin
             //ALU instruction can be completed the same cycle, just ignore a small delay
             // need to do rs2 - rs1 to see if they are equal
             //using register not immidiate  
-            assign ALUsrc = 1'b0
+            assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b1000;
             //want result from ALU
             assign ResultSrc = 1'b0;
@@ -393,7 +393,7 @@ always_comb begin
             //ALU instruction can be completed the same cycle, just ignore a small delay
             // need to do rs2 - rs1 to see if they are equal
             //using register not immidiate  
-            assign ALUsrc = 1'b0
+            assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b1000;
             //want result from ALU
             assign ResultSrc = 1'b0;
@@ -428,7 +428,7 @@ always_comb begin
             //ALU instruction can be completed the same cycle, just ignore a small delay
             // need to do rs2 < rs1 to see if they are equal
             //using register not immidiate  
-            assign ALUsrc = 1'b0
+            assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0010;
             //want result from ALU
             assign ResultSrc = 1'b0;
@@ -462,7 +462,7 @@ always_comb begin
             //ALU instruction can be completed the same cycle, just ignore a small delay
             // need to do rs1 > rs2 (signed) to see if they are equal
             //using register not immidiate  
-            assign ALUsrc = 1'b0
+            assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0011;
             //want result from ALU
             assign ResultSrc = 1'b0;
@@ -500,7 +500,7 @@ always_comb begin
             //ALU instruction can be completed the same cycle, just ignore a small delay
             // need to do rs2 < rs1 to see if they are equal
             //using register not immidiate  
-            assign ALUsrc = 1'b0
+            assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0010;
             //want result from ALU
             assign ResultSrc = 1'b0;
@@ -534,7 +534,7 @@ always_comb begin
             //ALU instruction can be completed the same cycle, just ignore a small delay
             // need to do rs1 < rs2 (signed) to see if they are equal
             //using register not immidiate  
-            assign ALUsrc = 1'b0
+            assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0011;
             //want result from ALU
             assign ResultSrc = 1'b0;
