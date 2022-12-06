@@ -10,10 +10,15 @@ module PCreg #(
 
 
 
-always_ff(@posedge clk) begin
+always_ff @(posedge clk) begin
 
-    (rst) ? Current_PC <= 32'b0 : Current_PC <= New_PC;
+    //(rst) ? Current_PC <= 32'b0 : Current_PC <= New_PC;
+
+    if (rst) Current_PC <= 32'b0;
+    else Current_PC <= New_PC;
 
 end
     
 endmodule
+
+

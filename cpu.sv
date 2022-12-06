@@ -39,8 +39,8 @@ module cpu #(
     output logic                        ZERO_Out,
 
     //All the Decode Elements
-    output logic [ADDRESS_WIDTH-1:0]    AD1_Out,
-    output logic [ADDRESS_WIDTH-1:0]    AD2_Out,
+    output logic [ADDRESS_WIDTH-1:0]    RA1_Out,
+    output logic [ADDRESS_WIDTH-1:0]    RA2_Out,
     output logic                        PCsrc_Out,
     output logic                        Resultsrc_Out,
     output logic                        MemWrite_Out,
@@ -82,7 +82,7 @@ logic [INSTR_WIDTH-1:0] Instr;
 logic [ALUCTRL_WIDTH-1:0] ALUctrl;
 logic ALUsrc;
 logic [IMMSRC_WIDTH-1:0] ImmSel;
-logic [ImmOp-1:0] ImmOp;
+//logic [ImmOp-1:0] ImmOp;
 logic [DATA_WIDTH-1:0] ImmExt;
 logic [DATA_WIDTH-1:0] ALU_OP2;
 logic [DATA_WIDTH-1:0] ALU_Result;
@@ -98,7 +98,7 @@ logic [DATA_WIDTH-1:0] Memory_Read;
 
 
 
-PC_Mux mux_2 (
+mux_2 PC_Mux (
 
     .option0  (PC_new),
     .option1  (PC_target),
@@ -107,7 +107,7 @@ PC_Mux mux_2 (
 
 );
 
-PCreg PC_reg (
+PC_reg PCreg (
 
     .clk          (clk),
     .rst          (rst),
@@ -116,21 +116,21 @@ PCreg PC_reg (
 
 );
 
-PCMem instr_mem (
+instr_mem PCMem (
 
     .PC       (PC_Next_Cycle),
     .instr    (Instr)
 
 );
 
-PCInc pc_inc (
+pc_inc PCInc (
 
     .PC       (PC_Next_Cycle),
     .PC_new   (PC_new)
 
 );
 
-Decoder Decode (
+Decode Decoder (
 
     .Instruction  (Instr),
     .ZERO         (zero),
@@ -150,7 +150,7 @@ Decoder Decode (
 
 );
 
-RegFile reg_file (
+reg_file RegFile (
 
     .clk      (clk),
     .RA1      (RA1),
@@ -164,7 +164,7 @@ RegFile reg_file (
 
 );
 
-SignExt Sign_Extend (
+Sign_Extend SignExt (
 
     .ImmSel   (ImmSel),
     .PC       (PC_to_Extend),
@@ -173,7 +173,7 @@ SignExt Sign_Extend (
 
 );
 
-ALUMux mux_2 (
+mux_2_ALU ALUMux (
 
     .option0  (RD2),
     .option1  (ImmExt),
@@ -192,7 +192,7 @@ ALU ALU (
 
 );
 
-MemFile Data_Memory (
+Data_Memory MemFile (
     .ALUresult    (Data_Out),
     .clk          (clk),
     .WE           (MemWrite),
@@ -200,7 +200,7 @@ MemFile Data_Memory (
     .ReadData     (Memory_Read)
 );
 
-DoutMux mux_2 (
+mux_2_Result DoutMux (
 
     .option0  (ALU_Result),
     .option1  (Memory_Read),
