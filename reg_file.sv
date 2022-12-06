@@ -7,6 +7,7 @@ module reg_file #(
     input logic  [ADDRESS_WIDTH-1:0] WA3,
     input logic  [WORD_WIDTH-1:0]    WD3
     input logic                      WEN,
+    input logic                      clk,
     output logic [WORD_WIDTH-1:0]    RD1,
     output logic [WORD_WIDTH-1:0]    RD2
 );
