@@ -1,4 +1,4 @@
-module PCreg #(
+module PC_reg #(
     
     parameter DATA_WIDTH = 32
 
