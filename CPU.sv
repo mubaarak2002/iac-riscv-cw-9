@@ -1,13 +1,6 @@
 module CPU #(
     parameter ADDRESS_WIDTH = 5,
-            DATA_WIDTH = 32,
-            ALUCTRL_WIDTH = 4,
-            PC_WIDTH = 16,
-            INSTR_WIDTH = 32,
-            OPCODEW = 7,
-            IMMSELW = 3,
-            BRCHCDEW = 3,
-            ImmOp = 25    parameter DATA_WIDTH = 32,
+    parameter DATA_WIDTH = 32,
     parameter INSTR_WIDTH = 32,
     parameter ADDRESS_WIDTH = 32,
     parameter PC_WIDTH = 32,
@@ -66,7 +59,7 @@ module CPU #(
     input logic                   clk,
     input logic                   rst,
     // input logic                   trigger,
-    output logic [DATA_WIDTH-1:0] a0,
+
 );
 
 logic [PC_WIDTH-1:0] PC;
@@ -97,7 +90,6 @@ logic [DATA_WIDTH-1:0] ImmExt;
 //all are labled with the format <beginningConnection>_<endConnection>
 
 //All are done with internal signals, such that the outputs can be assigned in the combinational loops
-logic PCMuxDout_InstrMemAddr;
 
 
 
@@ -140,66 +132,12 @@ MemFile instr_mem (
 DoutMux mux_2 (
 
 );
-
-
-
-
-always_comb begin
-
-
-//Assigning all the debugging output
-
-end
 
 
 //all the internal signals:
 //all are labled with the format <beginningConnection>_<endConnection>
 
 //All are done with internal signals, such that the outputs can be assigned in the combinational loops
-logic PCMuxDout_InstrMemAddr;
-
-
-
-PC_Mux mux_2 (
-
-);
-
-InstrMem instr_mem (
-
-);
-
-PCInc pc_inc (
-
-);
-
-Decode Decode (
-
-);
-
-RegFIle reg_file (
-
-);
-
-SignExt Sign_Extend (
-
-);
-
-ALUMux mux_2 (
-
-);
-
-ALU ALU (
-
-);
-
-MemFile instr_mem (
-
-);
-
-DoutMux mux_2 (
-
-);
-
 
 
 
