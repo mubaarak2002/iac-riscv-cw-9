@@ -143,7 +143,7 @@ Decode Decoder (
     .WrAddr       (WA3),
     .RegWrite     (WEn),
     .MemWrite     (MemWrite),
-    .ImmOP        (ImmOP),
+    .ImmOp        (ImmOP),
     .Immsrc       (ImmSel),
     .PC           (PC_to_Extend),
     .PCSrc        (PCsrc)

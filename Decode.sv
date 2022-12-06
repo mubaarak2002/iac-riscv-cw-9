@@ -44,7 +44,7 @@ module Decode #(
 
     //immidiate Outputs
     output logic [IMMOPW-1:0]     ImmOp,
-    output logic [IMMSELW-1:0]     Immsrc,
+    output logic [IMMSELW-1:0]    Immsrc,
     output logic [PCWIDTH-1:0]    PC,
 
     //PC outputs
