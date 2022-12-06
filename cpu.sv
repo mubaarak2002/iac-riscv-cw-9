@@ -4,7 +4,7 @@ module cpu #(
     parameter INSTR_WIDTH = 32,
     //remove if I forget to remove this <3 - Omar
     //parameter ADDRESS_WIDTH = 32,
-    parameter PC_WIDTH = 32,
+    parameter PC_WIDTH = 16,
     parameter ALUCTRL_WIDTH = 4,
     parameter IMMSRC_WIDTH = 3,
     parameter IMMOP_WIDTH = 25
@@ -143,11 +143,7 @@ Decode Decoder (
     .WrAddr       (WA3),
     .RegWrite     (WEn),
     .MemWrite     (MemWrite),
-<<<<<<< HEAD
-    .ImmOp        (ImmOP),
-=======
     .ImmOp        (ImmOp),
->>>>>>> 65733c0c7eab2fa8639f02149a64e7849b402e5a
     .Immsrc       (ImmSel),
     .PC           (PC_to_Extend),
     .PCSrc        (PCsrc)

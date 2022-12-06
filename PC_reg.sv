@@ -1,6 +1,6 @@
 module PC_reg #(
     
-    parameter DATA_WIDTH = 32
+    parameter DATA_WIDTH = 16
 
 ) (
     input logic                    clk, 
@@ -16,7 +16,7 @@ always_ff @(posedge clk) begin
 
     //(rst) ? Current_PC <= 32'b0 : Current_PC <= New_PC;
 
-    if (rst) Current_PC <= 32'b0;
+    if (rst) Current_PC <= 16'b0;
     else Current_PC <= New_PC;
 
 end
