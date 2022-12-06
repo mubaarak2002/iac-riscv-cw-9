@@ -30,8 +30,8 @@ module CPU #(
     output logic [DATA_WIDTH-1:0]       RD2_Out,
 
     //All Memory File Outputs
-    output logic [DATA_WIDTH]           MemAddr_Out,
-    output logic [DATA_WIDTH]           MemData_Out,
+    output logic [DATA_WIDTH-1:0]           MemAddr_Out,
+    output logic [DATA_WIDTH-1:0]           MemData_Out,
 
     //All ALU elements (not including system out)
     output logic                        ZERO_Out,
@@ -46,13 +46,12 @@ module CPU #(
     output logic                        ALUsrc_Out,
     output logic [IMMSRC_WIDTH-1:0]     Immsrc_Out,
     output logic                        RegWrite_Out,
-    output logic [IMMOP_WIDTH=1:0]      ImmOp_Out,
+    output logic [IMMOP_WIDTH-1:0]      ImmOp_Out,
     output logic [PC_WIDTH-1:0]         Decode_PC_Out,
     output logic [ADDRESS_WIDTH-1:0]    WrAddr_Out,
 
-
-
-    output logic [DATA_WIDTH-1:0]        Out
+    //system output
+    output logic [DATA_WIDTH-1:0]       Data_Out
 
     
     // input logic                   trigger,
@@ -99,112 +98,112 @@ logic [DATA_WIDTH-1:0] Memory_Read;
 
 PC_Mux mux_2 (
 
-    .(option0)  PC_new,
-    .(option1)  PC_target,
-    .(sel)      PCsrc,
-    .(dout)     PC_to_PCreg
+    .option0  (PC_new),
+    .option1  (PC_target),
+    .sel      (PCsrc),
+    .dout     (PC_to_PCreg)
 
 );
 
 PCreg PC_reg (
 
-    .(clk)          clk,
-    .(rst)          rst,
-    .(New_PC)       PC_Next_Cycle,
-    .(Current_PC)   PC_to_PCreg
+    .clk          (clk),
+    .rst          (rst),
+    .New_PC       (PC_Next_Cycle),
+    .Current_PC   (PC_to_PCreg)
 
 );
 
 InstrMem instr_mem (
 
-    .(PC)       PC_Next_Cycle,
-    .(instr)    Instr
+    .PC       (PC_Next_Cycle),
+    .instr    (Instr)
 
 );
 
 PCInc pc_inc (
 
-    .(PC)       PC_Next_Cycle,
-    .(PC_new)   PC_new
+    .PC       (PC_Next_Cycle),
+    .PC_new   (PC_new)
 
 );
 
 Decode Decode (
 
-    .(Instruction)  Instr,
-    .(ZERO)         zero,
-    .(PC_next)      PC_new,
-    .(ALUctrl)      ALUctrl,
-    .(ALUsrc)       ALUsrc,
-    .(ResultSrc)    Resultsrc,
-    .(RdAdd1)       RA1,
-    .(RdAdd2)       RA2,
-    .(WrAddr)       WA3,
-    .(RegWrite)     WEn,
-    .(MemWrite)     MemWrite,
-    .(ImmOP)        ImmOP,
-    .(Immsrc)       ImmSel,
-    .(PC)           PC_to_Extend,
-    .(PCSrc)        PCsrc
+    .Instruction  (Instr),
+    .ZERO         (zero),
+    .PC_next      (PC_new),
+    .ALUctrl      (ALUctrl),
+    .ALUsrc       (ALUsrc),
+    .ResultSrc    (Resultsrc),
+    .RdAdd1       (RA1),
+    .RdAdd2       (RA2),
+    .WrAddr       (WA3),
+    .RegWrite     (WEn),
+    .MemWrite     (MemWrite),
+    .ImmOP        (ImmOP),
+    .Immsrc       (ImmSel),
+    .PC           (PC_to_Extend),
+    .PCSrc        (PCsrc)
 
 );
 
 RegFile reg_file (
 
-    .(clk)      clk,
-    .(RA1)      RA1,
-    .(RA2)      RA2,
-    .(WA3)      WA3,
-    .(WD3)      Data_Out,
-    .(WEN)      WEn,
-    .(RD1)      RD1,
-    .(RD2)      RD2
+    .clk      (clk),
+    .RA1      (RA1),
+    .RA2      (RA2),
+    .WA3      (WA3),
+    .WD3      (Data_Out),
+    .WEN      (WEn),
+    .RD1      (RD1),
+    .RD2      (RD2)
 
 
 );
 
 SignExt Sign_Extend (
 
-    .(ImmSel)   (ImmSel)
-    .(PC)       (PC_to_Extend)
-    .(Imm)      (ImmOp)
-    .(ImmExt)   (ImmExt)
+    .ImmSel   (ImmSel),
+    .PC       (PC_to_Extend),
+    .Imm      (ImmOp),
+    .ImmExt   (ImmExt)
 
 );
 
 ALUMux mux_2 (
 
-    .(option0)  RD2,
-    .(option1)  ImmExt,
-    .(sel)      ALUsrc,
-    .(dout)     ALU_OP2
+    .option0  (RD2),
+    .option1  (ImmExt),
+    .sel      (ALUsrc),
+    .dout     (ALU_OP2)
 
 );
 
 ALU ALU (
 
-    .(ALUCtrl)  ALUctrl,
-    .(ALUop1)   RD1,
-    .(ALUop2)   ALU_OP2,
-    .(SUM)      ALU_Result,
-    .(ZERO)     zero
+    .ALUCtrl  (ALUctrl),
+    .ALUop1   (RD1),
+    .ALUop)   (ALU_OP2),
+    .SUM      (ALU_Result),
+    .ZERO     (zero)
 
 );
 
 MemFile instr_mem (
-    .(ALUresult)    Data_Out,
-    .(clk)          clk,
-    .(WE)           MemWrite,
-    .(WriteData)    RD2,
-    .(ReadData)     Memory_Read
+    .ALUresult    (Data_Out),
+    .clk          (clk),
+    .WE           (MemWrite),
+    .WriteData    (RD2),
+    .ReadData     (Memory_Read)
 );
 
 DoutMux mux_2 (
 
-    .(option0)  ALU_Result,
-    .(option1)  Memory_Read,
-    .(sel)      ResultSrc,
-    .(dout)     Data_Out
+    .option0  (ALU_Result),
+    .option1  (Memory_Read),
+    .sel      (ResultSrc),
+    .dout     (Data_Out)
 
 );
 
@@ -214,8 +213,32 @@ always_comb begin
 
 
 //Assigning all the debugging output
+assign ImmExt_Out = ImmExt;
+assign PC_Out = PC;
+assign PC_Target_Out = PC_target;
+assign Instruction_Out = Instr;
+assign PC_new_Out = PC_new;
+assign RD1_Out = RD1;
+assign RD2_Out = RD2;
+assign MemAddr_Out = MemWrAdd;
+assign MemData_Out = Memory_Read;
+assign ZERO_Out = zero;
+assign RA1_Out = RA1;
+assign RA2_Out = RA2;
+assign PCsrc_Out = PCsrc;
+assign Resultsrc_Out = Resultsrc;
+assign MemWrite_Out = MemWrite;
+assign ALUctrl_Out = ALUctrl;
+assign ALUsrc_Out = ALUsrc;
+assign Immsrc_Out = ImmSel;
+assign RegWrite_Out = Wen;
+assign ImmOp_Out = ImmOp;
+assign Decode_PC_Out = PC_to_PCreg;
+assign WrAddr_Out = WA3;
+
 
 end
 
 
 endmodule
+
