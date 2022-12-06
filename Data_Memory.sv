@@ -17,10 +17,8 @@ module instr_mem #(
 
     always_ff @(posedge clk) begin
         if (WEN) rom_array[ALUresult] = WriteData;
-    end
-
-    always_comb begin
         ReadData = rom_array[ALUresult];
     end
-    
+
+
 endmodule
