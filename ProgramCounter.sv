@@ -9,16 +9,12 @@ module ProgramCounter#(
 );
 
     //Adders. Uses combinational logic.
-    logic [PC_WIDTH-1:0] inc_PC;
-    logic [PC_WIDTH-1:0] branch_PC;
+    logic [PC_WIDTH-1:0] inc_PC = PC + {{(PC_WIDTH-3){1'b0}}, 3'b100};
+    logic [PC_WIDTH-1:0] branch_PC = PC_Target + PC;
     logic [PC_WIDTH-1:0] next_PC;
     
     //multiplexer, uses combinational logic. Selects either a branch or PC + 4.
     always_comb begin
-
-    inc_PC = PC + {{(PC_WIDTH-3){1'b0}}, 3'b100};
-    branch_PC = PC_Target + PC;
-
     if (PCsrc) next_PC = branch_PC;
     else next_PC = inc_PC;
     end
