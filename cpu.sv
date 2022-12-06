@@ -82,7 +82,7 @@ logic [INSTR_WIDTH-1:0] Instr;
 logic [ALUCTRL_WIDTH-1:0] ALUctrl;
 logic ALUsrc;
 logic [IMMSRC_WIDTH-1:0] ImmSel;
-//logic [ImmOp-1:0] ImmOp;
+logic [IMMOP_WIDTH-1:0] ImmOp;
 logic [DATA_WIDTH-1:0] ImmExt;
 logic [DATA_WIDTH-1:0] ALU_OP2;
 logic [DATA_WIDTH-1:0] ALU_Result;
@@ -143,7 +143,7 @@ Decode Decoder (
     .WrAddr       (WA3),
     .RegWrite     (WEn),
     .MemWrite     (MemWrite),
-    .ImmOP        (ImmOP),
+    .ImmOp        (ImmOp),
     .Immsrc       (ImmSel),
     .PC           (PC_to_Extend),
     .PCSrc        (PCsrc)
@@ -167,13 +167,12 @@ reg_file RegFile (
 Sign_Extend SignExt (
 
     .ImmSel   (ImmSel),
-    .PC       (PC_to_Extend),
     .Imm      (ImmOp),
     .ImmExt   (ImmExt)
 
 );
 
-mux_2_ALU ALUMux (
+mux_2 ALUMux (
 
     .option0  (RD2),
     .option1  (ImmExt),
@@ -195,16 +194,16 @@ ALU ALU (
 Data_Memory MemFile (
     .ALUresult    (Data_Out),
     .clk          (clk),
-    .WE           (MemWrite),
+    .WEN           (MemWrite),
     .WriteData    (RD2),
     .ReadData     (Memory_Read)
 );
 
-mux_2_Result DoutMux (
+mux_2 DoutMux (
 
     .option0  (ALU_Result),
     .option1  (Memory_Read),
-    .sel      (ResultSrc),
+    .sel      (Resultsrc),
     .dout     (DOut)
 
 );
