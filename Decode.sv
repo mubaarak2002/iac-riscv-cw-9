@@ -19,14 +19,14 @@ module Decode #(
 
     //other parameters
     parameter OPCODEW = 7,
-    parameter PCWIDTH = 32,
+    parameter PCWIDTH = 16,
     parameter BRCHCDEW = 3
 
 )(
     //inputs
     input logic [INSTRW-1:0]      Instruction,
     input logic [ZEROW-1:0]       ZERO,
-    input logic [INSTRW-1:0]      PC_next,
+    input logic [PCWIDTH-1:0]      PC_next,
 
 
     //ALU & Results Outputs

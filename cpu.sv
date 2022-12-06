@@ -23,7 +23,7 @@ module cpu #(
     output logic [PC_WIDTH-1:0]         PC_Out,
 
     //ALl Jump_Calc, PCReg, and PC/Instruction outputs
-    output logic [DATA_WIDTH-1:0]       PC_Target_Out,
+    output logic [PC_WIDTH-1:0]       PC_Target_Out,
     output logic [INSTR_WIDTH-1:0]      Instruction_Out,
     output logic [PC_WIDTH-1:0]         PC_new_Out,
 
@@ -98,35 +98,19 @@ logic [DATA_WIDTH-1:0] Memory_Read;
 
 
 
-mux_2 PC_Mux (
+ProgramCounter ProgramCounter (
 
-    .option0  (PC_new),
-    .option1  (PC_target),
-    .sel      (PCsrc),
-    .dout     (PC_to_PCreg)
-
-);
-
-PC_reg PCreg (
-
-    .clk          (clk),
-    .rst          (rst),
-    .New_PC       (PC_Next_Cycle),
-    .Current_PC   (PC_to_PCreg)
-
+    .clk        (clk),
+    .rst        (rst),
+    .PCsrc      (PCsrc),
+    .PC_Target  (PC_target),
+    .PC         (PC_Next_Cycle)
 );
 
 instr_mem PCMem (
 
     .PC       (PC_Next_Cycle),
     .instr    (Instr)
-
-);
-
-pc_inc PCInc (
-
-    .PC       (PC_Next_Cycle),
-    .PC_new   (PC_new)
 
 );
 
