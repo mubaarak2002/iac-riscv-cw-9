@@ -55,9 +55,6 @@ module CPU #(
     output logic [DATA_WIDTH-1:0]   Out
 
     
-
-    input logic                   clk,
-    input logic                   rst,
     // input logic                   trigger,
 
 );
