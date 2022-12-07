@@ -62,7 +62,7 @@ class Vcpu___024root final : public VerilatedModule {
         SData/*15:0*/ cpu__DOT__PC_new;
         SData/*15:0*/ cpu__DOT__PC_to_PCreg;
         SData/*15:0*/ cpu__DOT__PC_Next_Cycle;
-        SData/*15:0*/ cpu__DOT__PC_target;
+        SData/*15:0*/ cpu__DOT__PC_Target;
         SData/*15:0*/ cpu__DOT__PC_to_Extend;
         SData/*15:0*/ cpu__DOT__ProgramCounter__DOT__next_PC;
         VL_OUT(ImmExt_Out,31,0);

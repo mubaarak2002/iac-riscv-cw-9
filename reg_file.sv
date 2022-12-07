@@ -14,11 +14,13 @@ module reg_file #(
 
     logic [WORD_WIDTH-1:0] rom_array[2**ADDRESS_WIDTH-1:0];
 
-always_ff @(posedge clk) 
-begin
+always_ff @(posedge clk) begin
     if(WEN) rom_array[WA3] <= WD3;
-    RD1 <= rom_array[RA1];
-    RD2 <= rom_array[RA2];
+end
+
+always_comb begin
+    RD1 = rom_array[RA1];
+    RD2 = rom_array[RA2];
 end
 
 endmodule

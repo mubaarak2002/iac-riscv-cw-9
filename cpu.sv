@@ -65,7 +65,7 @@ logic [PC_WIDTH-1:0] PC;
 logic [PC_WIDTH-1:0] PC_new;
 logic [PC_WIDTH-1:0] PC_to_PCreg;
 logic [PC_WIDTH-1:0] PC_Next_Cycle;
-logic [PC_WIDTH-1:0] PC_target;
+logic [PC_WIDTH-1:0] PC_Target;
 logic [PC_WIDTH-1:0] PC_to_Extend;
 logic PCsrc;
 logic zero;
@@ -103,8 +103,15 @@ ProgramCounter ProgramCounter (
     .clk        (clk),
     .rst        (rst),
     .PCsrc      (PCsrc),
-    .PC_Target  (PC_target),
+    .PC_Target  (PC_Target),
     .PC         (PC_Next_Cycle)
+);
+
+PCTarget PCTarget (
+
+    .ImmExt     (ImmExt),
+    .PC         (PC),
+    .PC_Target  (PC_Target)
 );
 
 instr_mem PCMem (
@@ -200,7 +207,7 @@ always_comb begin
 //Assigning all the debugging output
 assign ImmExt_Out = ImmExt;
 assign PC_Out = PC;
-assign PC_Target_Out = PC_target;
+assign PC_Target_Out = PC_Target;
 assign Instruction_Out = Instr;
 assign PC_new_Out = PC_new;
 assign RD1_Out = RD1;

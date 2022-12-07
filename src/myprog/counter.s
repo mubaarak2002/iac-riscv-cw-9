@@ -8,5 +8,5 @@ mloop:
 iloop:
     addi    a0, a1, 0           # load a0 with a1
     addi    a1, a1, 1           # increment a1
-    bne     a1, t1, iloop       # if a1 = 255, branch to iploop
-    bne     t1, zero, mloop     #  ... else always brand to mloop
+    beq     a1, t1, mloop       # if a1 = 255, branch to iploop
+    bne     t1, zero, iloop     #  ... else always brand to mloop
