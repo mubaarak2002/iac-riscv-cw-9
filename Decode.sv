@@ -262,6 +262,39 @@ always_comb begin
 
     end
 
+/*
+        //this is the case for the JALr operation
+        //this is a jump to  a new destination from a register.
+    7'b1100111: begin
+
+        //read data from register 1 ( pc = x[r1] + immOp)
+        assign RdAdd1 = ;
+        //
+        assign RdAdd2 = ;
+        //
+        assign WrAddr = ;
+        //
+        assign RegWrite = ;
+        //
+        assign ALUsrc = ;
+        //
+        assign ALUctrl = ;
+        //
+        assign ResultSrc = ;
+        //
+        assign PCSrc = ;
+        //
+        assign ImmOp = ;
+        //
+        assign Immsrc = ;
+        //
+        assign MemWrite = ;
+        //
+        assign PC = ;
+
+    end
+
+*/
 
     //this is the case for Load Upper Immidiate Operations (Store the upper immidiate in rd)
     //note add upper immidiate is just an add opperation (use add to do it)
