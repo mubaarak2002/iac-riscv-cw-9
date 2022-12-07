@@ -4,6 +4,7 @@
 rm -rf obj_dir
 rm -f cpu.vcd
 
+#compile the test file
 
 #run Verilator to translate Verilog into C++, including the C++ testbench
 verilator -Wall --cc --trace cpu.sv --exe cpu_tb.cpp

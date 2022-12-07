@@ -16,7 +16,7 @@ logic [7:0]  rom_array   [2**ADDRESS_WIDTH-1:0];
 //logic [DATA_WIDTH-1:0]  rom_array   [5:0];
 
 initial begin
-        $readmemh("sinegen.s.hex", rom_array);
+        $readmemh("instr.mem", rom_array);
 end
 
 always_comb begin 

@@ -3,7 +3,7 @@
 #include "Vcpu.h"
 //#include "VRegFile.h"
 
-#define MAX_SIM_CYC 1000000
+#define MAX_SIM_CYC 100
 
 int main(int argc, char **argv, char **env) {
     int simcyc;     // simulation clock count
