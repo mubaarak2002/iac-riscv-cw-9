@@ -103,7 +103,7 @@ always_comb begin
     branchcode = Instruction [14:12];
 
     //this is the specific bits needed for an ALU instruction:
-    ALUopcode = {Instruction[31], Instruction[14:12]};
+    ALUopcode = {Instruction[30], Instruction[14:12]};
 
 
     //now that the predetermined signals are defined, all possible opcodes can be considered

@@ -12,7 +12,7 @@ module Data_Memory #(
     logic [DATA_WIDTH-1:0]  rom_array   [2**ADDRESS_WIDTH-1:0];
 
     initial begin
-        $readmemh("instr.mem", rom_array);
+        $readmemh("f1_tests.s.hex", rom_array);
     end;
 
     always_ff @(posedge clk) begin
