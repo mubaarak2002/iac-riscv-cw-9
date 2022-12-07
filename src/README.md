@@ -1,4 +1,4 @@
-<center>
+make<center>
 
 ## EIE2 Instruction Set Architecture & Compiler (IAC)
 
