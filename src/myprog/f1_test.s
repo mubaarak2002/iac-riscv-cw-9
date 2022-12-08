@@ -11,8 +11,8 @@ main:
     addi    x1, x1, 0x0020
     addi    x1, x1, 0x0040
     addi    x1, x1, 0x0080
-    addi    x2, zero, 0x0100
-    sub     x1, x2, x1
+    addi    x2, zero, 0xFF
+    sub     x1, x2, x1 
 
 
 

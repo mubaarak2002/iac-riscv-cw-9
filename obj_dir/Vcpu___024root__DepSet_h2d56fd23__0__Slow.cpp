@@ -11,10 +11,10 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__0(Vcpu___024root* vlSelf) {
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___settle__TOP__0\n"); );
     // Body
+    vlSelf->ZERO_Out = vlSelf->cpu__DOT__zero;
+    vlSelf->MemAddr_Out = vlSelf->cpu__DOT__MemWrAdd;
     vlSelf->PC_Out = vlSelf->cpu__DOT__PC;
     vlSelf->PC_new_Out = vlSelf->cpu__DOT__PC_new;
-    vlSelf->MemAddr_Out = vlSelf->cpu__DOT__MemWrAdd;
-    vlSelf->ZERO_Out = vlSelf->cpu__DOT__zero;
     vlSelf->Decode_PC_Out = vlSelf->cpu__DOT__PC_to_PCreg;
     vlSelf->MemData_Out = vlSelf->cpu__DOT__Memory_Read;
 }
@@ -24,20 +24,20 @@ VL_ATTR_COLD void Vcpu___024root___initial__TOP__0(Vcpu___024root* vlSelf) {
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___initial__TOP__0\n"); );
     // Init
-    VlWide<3>/*95:0*/ __Vtemp_h40913f9d__0;
-    VlWide<4>/*127:0*/ __Vtemp_h080d8e6b__0;
+    VlWide<3>/*95:0*/ __Vtemp_h5d3392b8__0;
+    VlWide<4>/*127:0*/ __Vtemp_h08a4866f__0;
     // Body
-    __Vtemp_h40913f9d__0[0U] = 0x2e6d656dU;
-    __Vtemp_h40913f9d__0[1U] = 0x6e737472U;
-    __Vtemp_h40913f9d__0[2U] = 0x69U;
-    VL_READMEM_N(true, 8, 65536, 0, VL_CVT_PACK_STR_NW(3, __Vtemp_h40913f9d__0)
+    __Vtemp_h5d3392b8__0[0U] = 0x2e6d656dU;
+    __Vtemp_h5d3392b8__0[1U] = 0x6e737472U;
+    __Vtemp_h5d3392b8__0[2U] = 0x69U;
+    VL_READMEM_N(true, 8, 65536, 0, VL_CVT_PACK_STR_NW(3, __Vtemp_h5d3392b8__0)
                  ,  &(vlSelf->cpu__DOT__PCMem__DOT__rom_array)
                  , 0, ~0ULL);
-    __Vtemp_h080d8e6b__0[0U] = 0x2e686578U;
-    __Vtemp_h080d8e6b__0[1U] = 0x74732e73U;
-    __Vtemp_h080d8e6b__0[2U] = 0x5f746573U;
-    __Vtemp_h080d8e6b__0[3U] = 0x6631U;
-    VL_READMEM_N(true, 32, 65536, 0, VL_CVT_PACK_STR_NW(4, __Vtemp_h080d8e6b__0)
+    __Vtemp_h08a4866f__0[0U] = 0x2e686578U;
+    __Vtemp_h08a4866f__0[1U] = 0x74732e73U;
+    __Vtemp_h08a4866f__0[2U] = 0x5f746573U;
+    __Vtemp_h08a4866f__0[3U] = 0x6631U;
+    VL_READMEM_N(true, 32, 65536, 0, VL_CVT_PACK_STR_NW(4, __Vtemp_h08a4866f__0)
                  ,  &(vlSelf->cpu__DOT__MemFile__DOT__rom_array)
                  , 0, ~0ULL);
 }
