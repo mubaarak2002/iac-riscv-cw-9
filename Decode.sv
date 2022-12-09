@@ -262,7 +262,7 @@ always_comb begin
 
     end
 
-/*
+/*Decided that this wouldn't be implemented on our cpu
         //this is the case for the JALr operation
         //this is a jump to  a new destination from a register.
     7'b1100111: begin
