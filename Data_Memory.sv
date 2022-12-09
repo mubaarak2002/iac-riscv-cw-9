@@ -12,12 +12,15 @@ module Data_Memory #(
     logic [DATA_WIDTH-1:0]  rom_array   [2**ADDRESS_WIDTH-1:0];
 
     initial begin
-        $readmemh("f1_tests.s.hex", rom_array);
+        $readmemh("Data_Memory.mem", rom_array);
     end;
 
     always_ff @(posedge clk) begin
         if (WEN) rom_array[ALUresult[ADDRESS_WIDTH-1:0]] <= WriteData;
-        ReadData <= rom_array[ALUresult[ADDRESS_WIDTH-1:0]];
+    end
+
+    always_comb begin
+        ReadData = rom_array[ALUresult[ADDRESS_WIDTH-1:0]];
     end
 
 
