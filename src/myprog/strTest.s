@@ -11,11 +11,19 @@ main:
     addi    x0, zero, 0x0000    #nop
 
     sw      t1, 10(x0)
-    sw      t2, 20(x0)
-    sw      t3, 30(x0)
+    sw      t2, 11(x0)
+    sw      t3, 12(x0)
 
     addi    x0, zero, 0x0000    #nop
     addi    x0, zero, 0x0000    #nop
     addi    x0, zero, 0x0000    #nop
+
+    lw      t4, 10(x0)
+    lw      t5, 11(x0)
+    lw      t6, 12(x0)
+
+    addi    x0, zero, 0x0000    #nop
+    addi    x0, zero, 0x0000    #nop    
+
 
 
