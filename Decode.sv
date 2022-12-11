@@ -155,7 +155,7 @@ always_comb begin
         //ALU takes input from the Immidiate Extend on ALU_Mux
         assign ALUsrc = 1'b1;
         //Opcode is defined above 
-        assign ALUctrl = ALUopcode;
+        assign ALUctrl = {1'b0, branchcode};
         //result should come from ALU, not memory
         assign ResultSrc = 1'b0;
         //PC is next address, no jump occurred
@@ -184,7 +184,7 @@ always_comb begin
         //no need to write becasue are storing in memory not registers
         assign RegWrite = 1'b0;
         //ALU is reading immidiate for offset
-        assign ALUsrc = 1'b1;
+        assign ALUsrc = 1'b0;
         //need to add, such that offset + r2 equals address. instruction gives 010, dont know why, so doing manually
         assign ALUctrl = 4'b0000;
         //doesnt matter, but make data output be value stored to make debugging easier
