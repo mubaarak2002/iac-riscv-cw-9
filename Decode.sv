@@ -184,7 +184,7 @@ always_comb begin
         //no need to write becasue are storing in memory not registers
         assign RegWrite = 1'b0;
         //ALU is reading immidiate for offset
-        assign ALUsrc = 1'b0;
+        assign ALUsrc = 1'b1;
         //need to add, such that offset + r2 equals address. instruction gives 010, dont know why, so doing manually
         assign ALUctrl = 4'b0000;
         //doesnt matter, but make data output be value stored to make debugging easier

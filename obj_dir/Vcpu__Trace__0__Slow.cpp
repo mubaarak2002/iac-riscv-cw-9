@@ -163,7 +163,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->pushNamePrefix("MemFile ");
     tracep->declBus(c+98,"ADDRESS_WIDTH", false,-1, 31,0);
     tracep->declBus(c+97,"DATA_WIDTH", false,-1, 31,0);
-    tracep->declBus(c+93,"ALUresult", false,-1, 31,0);
+    tracep->declBus(c+19,"ALUresult", false,-1, 31,0);
     tracep->declBit(c+69,"clk", false,-1);
     tracep->declBit(c+6,"WEN", false,-1);
     tracep->declBus(c+11,"WriteData", false,-1, 31,0);

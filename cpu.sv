@@ -183,7 +183,7 @@ ALU ALU (
 );
 
 Data_Memory MemFile (
-    .ALUresult    (Data_Out),
+    .ALUresult    (ALU_Result),
     .clk          (clk),
     .WEN          (MemWrite),
     .WriteData    (RD2),
