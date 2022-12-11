@@ -26,7 +26,17 @@ main:
     addi    x0, zero, 0x0000    #nop    
 
     LI      t2, 0xFFFFE
+
+    addi    x0, zero, 0x0000    #nop
+    addi    x0, zero, 0x0000    #nop
+    addi    x0, zero, 0x0000    #nop
+    addi    x0, zero, 0x0000    #nop     
+
+    addi    t1, zero, 0x08      # load a3 with 8
     ADD     t3, t1, t2
+
+    addi    x0, zero, 0x0000    #nop
+    addi    x0, zero, 0x0000    #nop  
      
     ADD     t4, t5, t6          #     a6 = index into pdf array
 
