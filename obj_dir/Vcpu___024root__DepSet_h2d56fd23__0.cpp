@@ -28,8 +28,6 @@ VL_INLINE_OPT void Vcpu___024root___sequent__TOP__0(Vcpu___024root* vlSelf) {
     // Body
     __Vdlyvset__cpu__DOT__MemFile__DOT__rom_array__v0 = 0U;
     __Vdlyvset__cpu__DOT__RegFile__DOT__rom_array__v0 = 0U;
-    vlSelf->cpu__DOT__Memory_Read = vlSelf->cpu__DOT__MemFile__DOT__rom_array
-        [(0xffffU & vlSelf->Data_Out)];
     if (vlSelf->cpu__DOT__MemWrite) {
         __Vdlyvval__cpu__DOT__MemFile__DOT__rom_array__v0 
             = vlSelf->cpu__DOT__RD2;
@@ -52,7 +50,6 @@ VL_INLINE_OPT void Vcpu___024root___sequent__TOP__0(Vcpu___024root* vlSelf) {
         vlSelf->cpu__DOT__RegFile__DOT__rom_array[__Vdlyvdim0__cpu__DOT__RegFile__DOT__rom_array__v0] 
             = __Vdlyvval__cpu__DOT__RegFile__DOT__rom_array__v0;
     }
-    vlSelf->MemData_Out = vlSelf->cpu__DOT__Memory_Read;
 }
 
 VL_INLINE_OPT void Vcpu___024root___sequent__TOP__1(Vcpu___024root* vlSelf) {
@@ -84,6 +81,7 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___combo__TOP__1\n"); );
     // Body
+    vlSelf->Data_Out = vlSelf->cpu__DOT__DOut;
     vlSelf->cpu__DOT__Decoder__DOT__rd = (0x1fU & (vlSelf->cpu__DOT__Instr 
                                                    >> 7U));
     vlSelf->cpu__DOT__Decoder__DOT__r0 = 0U;
@@ -678,11 +676,13 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
         vlSelf->cpu__DOT__MemWrite = 0U;
         vlSelf->cpu__DOT__PC_to_Extend = 0U;
     }
+    vlSelf->cpu__DOT__Memory_Read = vlSelf->cpu__DOT__MemFile__DOT__rom_array
+        [(0xffffU & vlSelf->Data_Out)];
     vlSelf->WrAddr_Out = vlSelf->cpu__DOT__WA3;
     vlSelf->RegWrite_Out = vlSelf->cpu__DOT__WEn;
     vlSelf->MemWrite_Out = vlSelf->cpu__DOT__MemWrite;
-    vlSelf->PCsrc_Out = vlSelf->cpu__DOT__PCsrc;
     vlSelf->Resultsrc_Out = vlSelf->cpu__DOT__Resultsrc;
+    vlSelf->PCsrc_Out = vlSelf->cpu__DOT__PCsrc;
     vlSelf->ALUctrl_Out = vlSelf->cpu__DOT__ALUctrl;
     vlSelf->ALUsrc_Out = vlSelf->cpu__DOT__ALUsrc;
     vlSelf->RA1_Out = vlSelf->cpu__DOT__RA1;
@@ -772,6 +772,7 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                                             | (0xfffU 
                                                & (vlSelf->cpu__DOT__ImmOp 
                                                   >> 0xdU))))));
+    vlSelf->MemData_Out = vlSelf->cpu__DOT__Memory_Read;
     vlSelf->RD1_Out = vlSelf->cpu__DOT__RD1;
     vlSelf->RD2_Out = vlSelf->cpu__DOT__RD2;
     vlSelf->ImmExt_Out = vlSelf->cpu__DOT__ImmExt;
@@ -848,7 +849,6 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__DOut = ((IData)(vlSelf->cpu__DOT__Resultsrc)
                                ? vlSelf->cpu__DOT__Memory_Read
                                : vlSelf->cpu__DOT__ALU_Result);
-    vlSelf->Data_Out = vlSelf->cpu__DOT__DOut;
 }
 
 void Vcpu___024root___eval(Vcpu___024root* vlSelf) {
@@ -890,10 +890,13 @@ VL_INLINE_OPT QData Vcpu___024root___change_request_1(Vcpu___024root* vlSelf) {
     // Body
     // Change detection
     QData __req = false;  // Logically a bool
-    __req |= ((vlSelf->cpu__DOT__zero ^ vlSelf->__Vchglast__TOP__cpu__DOT__zero));
+    __req |= ((vlSelf->cpu__DOT__zero ^ vlSelf->__Vchglast__TOP__cpu__DOT__zero)
+         | (vlSelf->cpu__DOT__DOut ^ vlSelf->__Vchglast__TOP__cpu__DOT__DOut));
     VL_DEBUG_IF( if(__req && ((vlSelf->cpu__DOT__zero ^ vlSelf->__Vchglast__TOP__cpu__DOT__zero))) VL_DBG_MSGF("        CHANGE: cpu.sv:71: cpu.zero\n"); );
+    VL_DEBUG_IF( if(__req && ((vlSelf->cpu__DOT__DOut ^ vlSelf->__Vchglast__TOP__cpu__DOT__DOut))) VL_DBG_MSGF("        CHANGE: cpu.sv:89: cpu.DOut\n"); );
     // Final
     vlSelf->__Vchglast__TOP__cpu__DOT__zero = vlSelf->cpu__DOT__zero;
+    vlSelf->__Vchglast__TOP__cpu__DOT__DOut = vlSelf->cpu__DOT__DOut;
     return __req;
 }
 

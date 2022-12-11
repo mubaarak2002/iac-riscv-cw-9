@@ -87,6 +87,7 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__Memory_Read;
         IData/*24:0*/ cpu__DOT__Decoder__DOT__Imm;
         IData/*19:0*/ cpu__DOT__Decoder__DOT__UpperImm;
+        IData/*31:0*/ __Vchglast__TOP__cpu__DOT__DOut;
         VlUnpacked<CData/*7:0*/, 65536> cpu__DOT__PCMem__DOT__rom_array;
         VlUnpacked<IData/*31:0*/, 32> cpu__DOT__RegFile__DOT__rom_array;
         VlUnpacked<IData/*31:0*/, 65536> cpu__DOT__MemFile__DOT__rom_array;
