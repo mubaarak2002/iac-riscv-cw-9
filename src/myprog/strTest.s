@@ -25,5 +25,10 @@ main:
     addi    x0, zero, 0x0000    #nop
     addi    x0, zero, 0x0000    #nop    
 
+    LI      t2, 0xFFFFE
+    ADD     t3, t1, t2
+     
+    ADD     t4, t5, t6          #     a6 = index into pdf array
+
 
 
