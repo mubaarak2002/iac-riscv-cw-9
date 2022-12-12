@@ -86,15 +86,6 @@ always_comb begin
     //contains every possible jump instruction
     Imm = Instruction [31:7];
 
-/*commented out because is done by sign_Extend
-
-    //implemented only if time allows:
-    UpperImm = Instruction[31:12];
-
-    //used for shifting instructions
-    ShortImm = Instruction[24:20];
-
-*/
 
     //this is the opcode of the function
     opcode = Instruction [6:0];
