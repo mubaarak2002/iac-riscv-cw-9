@@ -31,7 +31,7 @@
 
 
 **Key**
-'p' = author
-'s' = coAuthor (when applicable)
-'d' = helped debug (if not primary author)
+'a' = author
+'c' = coAuthor (when applicable)
+'d' = helped debug (if not authors)
  
