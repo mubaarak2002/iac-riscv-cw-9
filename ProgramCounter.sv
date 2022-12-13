@@ -3,8 +3,9 @@ module ProgramCounter#(
     parameter PC_WIDTH = 16
 )(
     input logic     clk, rst,
-    input logic     PCsrc,
+    input logic     [1:0] PCsrc,
     input logic     [PC_WIDTH-1:0] PC_Target,
+    input logic     [31:0]         Return,
     output logic    [PC_WIDTH-1:0] PC,
     output logic    [PC_WIDTH-1:0] inc_PC
 );
@@ -19,9 +20,14 @@ module ProgramCounter#(
     end
 
     //multiplexer, uses combinational logic. Selects either a branch or PC + 4.
+
     always_comb begin
-        if (PCsrc) next_PC = branch_PC;
-        else next_PC = inc_PC;
+        case (PCsrc)
+        2'b00: next_PC = inc_PC;
+        2'b01: next_PC = branch_PC;
+        2'b10: next_PC = Return[PC_WIDTH-1:0];
+        2'b11: next_PC = inc_PC;
+        endcase
     end
     
     //PC register. Synchronous with an asynchronous reset

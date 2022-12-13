@@ -49,7 +49,7 @@ module Decode #(
     output logic [PCWIDTH-1:0]    PC,
 
     //PC outputs
-    output logic                  PCSrc,
+    output logic [1:0]            PCSrc,
     output logic                  isJALR
 
 );
@@ -120,9 +120,9 @@ always_comb begin
         //Opcode is defined above 
         assign ALUctrl = ALUopcode;
         //result should come from ALU, not memory
-        assign ResultSrc = 1'b00;
+        assign ResultSrc = 2'b00;
         //PC is next address, no jump occurred
-        assign PCSrc = 1'b0;
+        assign PCSrc = 2'b0;
 
         //no immidiates are being used here, so can connect them, but nothing will happen
         assign ImmOp = Imm;
@@ -152,7 +152,7 @@ always_comb begin
         //result should come from ALU, not memory
         assign ResultSrc = 2'b00;
         //PC is next address, no jump occurred
-        assign PCSrc = 1'b0;
+        assign PCSrc = 2'b0;
 
         //no immidiates are being used here, so can connect them, but nothing will happen
         assign ImmOp = Imm;
@@ -183,7 +183,7 @@ always_comb begin
         //doesnt matter, but make data output be value stored to make debugging easier
         assign ResultSrc = 2'b01;
         //no jumps occurring
-        assign PCSrc = 1'b0;
+        assign PCSrc = 2'b0;
         //pass whole immidiate value
         assign ImmOp = Imm;
         //want just the store bits
@@ -213,7 +213,7 @@ always_comb begin
         //Value needs to be stored into the register designated in rs2, need input from data memory
         assign ResultSrc = 2'b01;
         //no jumps occurring
-        assign PCSrc = 0'b0;
+        assign PCSrc = 2'b0;
         //pass whole immidiate value
         assign ImmOp = Imm;
         //want the immidiate for the load instruction
@@ -243,7 +243,7 @@ always_comb begin
         //next PC value selected
         assign ResultSrc = 2'b10;
         //get new PC value from the Jump_calc Module
-        assign PCSrc = 1'b1;
+        assign PCSrc = 2'b01;
         //want the Immidiate to be calculated 
         assign ImmOp = Imm;
         //Need Immidiate for offset, use the specific command for Jump instructions
@@ -275,7 +275,7 @@ always_comb begin
         //doesnt matter as not being stored anywher
         assign ResultSrc = 2'b00;
         //get new PC value from the Jump_calc Module
-        assign PCSrc = 1'b1;
+        assign PCSrc = 2'b10;
         //want the Immidiate to be calculated
         assign ImmOp = Imm;
         //uses the first 11 bits, which is the same as load instructions
@@ -308,7 +308,7 @@ always_comb begin
         //No use for data memory
         assign ResultSrc = 2'b00;
         //no jumps occurring
-        assign PCSrc = 0'b0;
+        assign PCSrc = 2'b0;
         //pass whole immidiate value
         assign ImmOp = Imm;
         //want the immidiate for the upper Immidiate
@@ -338,7 +338,7 @@ always_comb begin
         //No use for data memory
         assign ResultSrc = 2'b0;
         //no jumps occurring
-        assign PCSrc = 0'b0;
+        assign PCSrc = 2'b0;
         //pass whole immidiate value
         assign ImmOp = Imm;
         //want the immidiate for the upper Immidiate
@@ -391,7 +391,7 @@ always_comb begin
             assign ResultSrc = 2'b0;
 
             //if zero = 1, PCsrc = jump output
-            assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
+            assign PCSrc = (ZERO == 1) ? 2'b01 : 2'b0;
 
             //pass the immidiate and take the immidiate for branch instructions
             assign ImmOp = Imm;
@@ -426,7 +426,7 @@ always_comb begin
 
             //if zero = 1, PCsrc = jump output
             //this is the only change from beq
-            assign PCSrc = (ZERO == 1) ? 1'b0 : 1'b1;
+            assign PCSrc = (ZERO == 1) ? 2'b00 : 2'b01;
 
             //pass the immidiate and take the immidiate for branch instructions
             assign ImmOp = Imm;
@@ -460,7 +460,7 @@ always_comb begin
             assign ResultSrc = 2'b0;
 
             //if zero = 1, x[r1] > x[r2], PCsrc = jump output
-            assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
+            assign PCSrc = (ZERO == 1) ? 2'b01 : 2'b00;
 
             //pass the immidiate and take the immidiate for branch instructions
             assign ImmOp = Imm;
@@ -494,7 +494,7 @@ always_comb begin
             assign ResultSrc = 2'b0;
 
             //if zero = 1, x[r1] > x[r2], PCsrc = jump output
-            assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
+            assign PCSrc = (ZERO == 1) ? 2'b01 : 2'b00;
 
             //pass the immidiate and take the immidiate for branch instructions
             assign ImmOp = Imm;
@@ -532,7 +532,7 @@ always_comb begin
             assign ResultSrc = 2'b0;
 
             //if zero = 1, x[r1] > x[r2], PCsrc = jump output
-            assign PCSrc = (ZERO == 1) ? 1'b0 : 1'b1;
+            assign PCSrc = (ZERO == 1) ? 2'b00 : 2'b01;
 
             //pass the immidiate and take the immidiate for branch instructions
             assign ImmOp = Imm;
@@ -566,7 +566,7 @@ always_comb begin
             assign ResultSrc = 2'b0;
 
             //if zero = 1, x[r1] > x[r2], PCsrc = jump output
-            assign PCSrc = (ZERO == 1) ? 1'b0 : 1'b1;
+            assign PCSrc = (ZERO == 1) ? 2'b00 : 2'b01;
 
             //pass the immidiate and take the immidiate for branch instructions
             assign ImmOp = Imm;
@@ -593,7 +593,7 @@ always_comb begin
             assign ALUsrc = 1'b1;
             assign ALUctrl = 4'b0;
             assign ResultSrc = 2'b0;
-            assign PCSrc = 1'b0;
+            assign PCSrc = 2'b0;
             assign ImmOp = 25'b0;
             assign Immsrc = 3'b000;
             assign MemWrite = 0'b0;
@@ -617,7 +617,7 @@ always_comb begin
         assign ALUsrc = 1'b1;
         assign ALUctrl = 4'b0;
         assign ResultSrc = 2'b0;
-        assign PCSrc = 1'b0;
+        assign PCSrc = 2'b0;
         assign ImmOp = 25'b0;
         assign Immsrc = 3'b000;
         assign MemWrite = 0'b0;

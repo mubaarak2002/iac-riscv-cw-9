@@ -41,7 +41,7 @@ module cpu #(
     //All the Decode Elements
     output logic [ADDRESS_WIDTH-1:0]    RA1_Out,
     output logic [ADDRESS_WIDTH-1:0]    RA2_Out,
-    output logic                        PCsrc_Out,
+    output logic [1:0]                  PCsrc_Out,
     output logic [1:0]                  Resultsrc_Out,
     output logic                        MemWrite_Out,
     output logic [ALUCTRL_WIDTH-1:0]    ALUctrl_Out,
@@ -67,7 +67,7 @@ logic [PC_WIDTH-1:0] PC_to_PCreg;
 logic [PC_WIDTH-1:0] PC_Next_Cycle;
 logic [PC_WIDTH-1:0] PC_Target;
 logic [PC_WIDTH-1:0] PC_to_Extend;
-logic PCsrc;
+logic [1:0] PCsrc;
 logic zero;
 logic [1:0] Resultsrc;
 logic MemWrite;
@@ -106,7 +106,9 @@ ProgramCounter ProgramCounter (
     .rst        (rst),
     .PCsrc      (PCsrc),
     .PC_Target  (PC_Target),
-    .PC         (PC_Next_Cycle)
+    .Return     (DOut),
+    .PC         (PC),
+    .inc_PC     (PC_Next_Cycle)
 );
 
 PCTarget PCTarget (
@@ -118,14 +120,14 @@ PCTarget PCTarget (
 
 instr_mem PCMem (
 
-    .PC       (PC_Next_Cycle),
+    .PC       (PC),
     .instr    (Instr)
 
 );
 
 mux_2 JumpMux (
 
-    .option0    (PC_Next_Cycle),
+    .option0    (PC),
     .option1    (RD1),
     .sel        (isJALR),
     .dout       (Jump_Calc_Input)
