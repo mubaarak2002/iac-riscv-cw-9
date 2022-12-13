@@ -161,14 +161,14 @@ VL_ATTR_COLD void Vcpu___024root__trace_init_sub__TOP__0(Vcpu___024root* vlSelf,
     tracep->declBus(c+20,"dout", false,-1, 31,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("MemFile ");
-    tracep->declBus(c+98,"ADDRESS_WIDTH", false,-1, 31,0);
+    tracep->declBus(c+111,"ADDRESS_WIDTH", false,-1, 31,0);
     tracep->declBus(c+97,"DATA_WIDTH", false,-1, 31,0);
     tracep->declBus(c+19,"ALUresult", false,-1, 31,0);
     tracep->declBit(c+70,"clk", false,-1);
     tracep->declBit(c+6,"WEN", false,-1);
     tracep->declBus(c+11,"WriteData", false,-1, 31,0);
     tracep->declBus(c+21,"ReadData", false,-1, 31,0);
-    tracep->declBus(c+30,"addr", false,-1, 15,0);
+    tracep->declBus(c+30,"addr", false,-1, 17,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("PCMem ");
     tracep->declBus(c+98,"ADDRESS_WIDTH", false,-1, 31,0);
@@ -290,7 +290,7 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullCData(oldp+27,(vlSelf->cpu__DOT__Decoder__DOT__ALUopcode),4);
     bufp->fullCData(oldp+28,(vlSelf->cpu__DOT__Decoder__DOT__r0),5);
     bufp->fullCData(oldp+29,(vlSelf->cpu__DOT__Decoder__DOT__branchcode),3);
-    bufp->fullSData(oldp+30,(vlSelf->cpu__DOT__MemFile__DOT__addr),16);
+    bufp->fullIData(oldp+30,(vlSelf->cpu__DOT__MemFile__DOT__addr),18);
     bufp->fullIData(oldp+31,(vlSelf->cpu__DOT__RegFile__DOT__rom_array[0]),32);
     bufp->fullIData(oldp+32,(vlSelf->cpu__DOT__RegFile__DOT__rom_array[1]),32);
     bufp->fullIData(oldp+33,(vlSelf->cpu__DOT__RegFile__DOT__rom_array[2]),32);
@@ -375,4 +375,5 @@ VL_ATTR_COLD void Vcpu___024root__trace_full_sub_0(Vcpu___024root* vlSelf, Veril
     bufp->fullIData(oldp+108,(7U),32);
     bufp->fullIData(oldp+109,(vlSelf->cpu__DOT__Decoder__DOT__UpperImm),20);
     bufp->fullCData(oldp+110,(vlSelf->cpu__DOT__Decoder__DOT__ShortImm),5);
+    bufp->fullIData(oldp+111,(0x12U),32);
 }

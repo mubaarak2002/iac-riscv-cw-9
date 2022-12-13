@@ -53,7 +53,7 @@ void Vcpu___024root__trace_chg_sub_0(Vcpu___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgCData(oldp+26,(vlSelf->cpu__DOT__Decoder__DOT__ALUopcode),4);
         bufp->chgCData(oldp+27,(vlSelf->cpu__DOT__Decoder__DOT__r0),5);
         bufp->chgCData(oldp+28,(vlSelf->cpu__DOT__Decoder__DOT__branchcode),3);
-        bufp->chgSData(oldp+29,(vlSelf->cpu__DOT__MemFile__DOT__addr),16);
+        bufp->chgIData(oldp+29,(vlSelf->cpu__DOT__MemFile__DOT__addr),18);
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[2U])) {
         bufp->chgIData(oldp+30,(vlSelf->cpu__DOT__RegFile__DOT__rom_array[0]),32);

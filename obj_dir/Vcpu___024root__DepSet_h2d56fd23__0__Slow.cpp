@@ -23,6 +23,9 @@ VL_ATTR_COLD void Vcpu___024root___initial__TOP__0(Vcpu___024root* vlSelf) {
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___initial__TOP__0\n"); );
     // Body
+    VL_READMEM_N(true, 32, 262144, 0, std::string{"sine.mem"}
+                 ,  &(vlSelf->cpu__DOT__MemFile__DOT__ram_array)
+                 , 0x2710U, ~0ULL);
     VL_READMEM_N(true, 8, 65536, 0, std::string{"pdf.hex"}
                  ,  &(vlSelf->cpu__DOT__PCMem__DOT__rom_array)
                  , 0, ~0ULL);
@@ -808,7 +811,7 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
                                                 (vlSelf->cpu__DOT__RD1 
                                                  + vlSelf->cpu__DOT__ALU_OP2)))));
     vlSelf->cpu__DOT__zero = (0U == vlSelf->cpu__DOT__ALU_Result);
-    vlSelf->cpu__DOT__MemFile__DOT__addr = (0xffffU 
+    vlSelf->cpu__DOT__MemFile__DOT__addr = (0x3ffffU 
                                             & vlSelf->cpu__DOT__ALU_Result);
     vlSelf->cpu__DOT__Memory_Read = vlSelf->cpu__DOT__MemFile__DOT__ram_array
         [vlSelf->cpu__DOT__MemFile__DOT__addr];
@@ -926,10 +929,10 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->cpu__DOT__RegFile__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(32);
     }
-    for (int __Vi0=0; __Vi0<65536; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<262144; ++__Vi0) {
         vlSelf->cpu__DOT__MemFile__DOT__ram_array[__Vi0] = VL_RAND_RESET_I(32);
     }
-    vlSelf->cpu__DOT__MemFile__DOT__addr = VL_RAND_RESET_I(16);
+    vlSelf->cpu__DOT__MemFile__DOT__addr = VL_RAND_RESET_I(18);
     vlSelf->__Vchglast__TOP__cpu__DOT__zero = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);

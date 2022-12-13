@@ -22,7 +22,7 @@ VL_INLINE_OPT void Vcpu___024root___sequent__TOP__0(Vcpu___024root* vlSelf) {
     CData/*4:0*/ __Vdlyvdim0__cpu__DOT__RegFile__DOT__rom_array__v0;
     IData/*31:0*/ __Vdlyvval__cpu__DOT__RegFile__DOT__rom_array__v0;
     CData/*0:0*/ __Vdlyvset__cpu__DOT__RegFile__DOT__rom_array__v0;
-    SData/*15:0*/ __Vdlyvdim0__cpu__DOT__MemFile__DOT__ram_array__v0;
+    IData/*17:0*/ __Vdlyvdim0__cpu__DOT__MemFile__DOT__ram_array__v0;
     IData/*31:0*/ __Vdlyvval__cpu__DOT__MemFile__DOT__ram_array__v0;
     CData/*0:0*/ __Vdlyvset__cpu__DOT__MemFile__DOT__ram_array__v0;
     // Body
@@ -841,7 +841,7 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                                                 (vlSelf->cpu__DOT__RD1 
                                                  + vlSelf->cpu__DOT__ALU_OP2)))));
     vlSelf->cpu__DOT__zero = (0U == vlSelf->cpu__DOT__ALU_Result);
-    vlSelf->cpu__DOT__MemFile__DOT__addr = (0xffffU 
+    vlSelf->cpu__DOT__MemFile__DOT__addr = (0x3ffffU 
                                             & vlSelf->cpu__DOT__ALU_Result);
     vlSelf->cpu__DOT__Memory_Read = vlSelf->cpu__DOT__MemFile__DOT__ram_array
         [vlSelf->cpu__DOT__MemFile__DOT__addr];
