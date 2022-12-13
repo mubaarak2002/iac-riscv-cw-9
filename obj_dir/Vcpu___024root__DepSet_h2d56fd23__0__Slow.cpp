@@ -23,9 +23,6 @@ VL_ATTR_COLD void Vcpu___024root___initial__TOP__0(Vcpu___024root* vlSelf) {
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___initial__TOP__0\n"); );
     // Body
-    VL_READMEM_N(true, 32, 262144, 0, std::string{"sine.mem"}
-                 ,  &(vlSelf->cpu__DOT__MemFile__DOT__ram_array)
-                 , 0x2710U, ~0ULL);
     VL_READMEM_N(true, 8, 65536, 0, std::string{"pdf.hex"}
                  ,  &(vlSelf->cpu__DOT__PCMem__DOT__rom_array)
                  , 0, ~0ULL);
@@ -73,6 +70,7 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
                                                  | (7U 
                                                     & (vlSelf->cpu__DOT__Instr 
                                                        >> 0xcU)));
+    vlSelf->cpu__DOT__isJALR = (0x67U == (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode));
     if ((0x40U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
         if ((0x20U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
             if ((0x10U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
@@ -440,7 +438,7 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
                 vlSelf->cpu__DOT__RA2 = vlSelf->cpu__DOT__Decoder__DOT__rs2;
                 vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__r0;
                 vlSelf->cpu__DOT__WEn = 0U;
-                vlSelf->cpu__DOT__ALUsrc = 0U;
+                vlSelf->cpu__DOT__ALUsrc = 1U;
                 vlSelf->cpu__DOT__ALUctrl = 0U;
                 vlSelf->cpu__DOT__Resultsrc = 1U;
                 vlSelf->cpu__DOT__PCsrc = 0U;
@@ -742,7 +740,9 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
     vlSelf->RD1_Out = vlSelf->cpu__DOT__RD1;
     vlSelf->RD2_Out = vlSelf->cpu__DOT__RD2;
     vlSelf->ImmExt_Out = vlSelf->cpu__DOT__ImmExt;
-    vlSelf->cpu__DOT__PC_Target = (0xffffU & ((IData)(vlSelf->cpu__DOT__PC_Next_Cycle) 
+    vlSelf->cpu__DOT__PC_Target = (0xffffU & (((IData)(vlSelf->cpu__DOT__isJALR)
+                                                ? vlSelf->cpu__DOT__RD1
+                                                : (IData)(vlSelf->cpu__DOT__PC_Next_Cycle)) 
                                               + vlSelf->cpu__DOT__ImmExt));
     vlSelf->cpu__DOT__ALU_OP2 = ((IData)(vlSelf->cpu__DOT__ALUsrc)
                                   ? vlSelf->cpu__DOT__ImmExt
@@ -811,7 +811,7 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
                                                 (vlSelf->cpu__DOT__RD1 
                                                  + vlSelf->cpu__DOT__ALU_OP2)))));
     vlSelf->cpu__DOT__zero = (0U == vlSelf->cpu__DOT__ALU_Result);
-    vlSelf->cpu__DOT__MemFile__DOT__addr = (0x3ffffU 
+    vlSelf->cpu__DOT__MemFile__DOT__addr = (0xfffffU 
                                             & vlSelf->cpu__DOT__ALU_Result);
     vlSelf->cpu__DOT__Memory_Read = vlSelf->cpu__DOT__MemFile__DOT__ram_array
         [vlSelf->cpu__DOT__MemFile__DOT__addr];
@@ -908,6 +908,7 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     vlSelf->cpu__DOT__ALU_Result = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__DOut = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__Memory_Read = VL_RAND_RESET_I(32);
+    vlSelf->cpu__DOT__isJALR = VL_RAND_RESET_I(1);
     vlSelf->cpu__DOT__ProgramCounter__DOT__next_PC = VL_RAND_RESET_I(16);
     vlSelf->cpu__DOT__PCMem__DOT__instrByte1 = VL_RAND_RESET_I(8);
     vlSelf->cpu__DOT__PCMem__DOT__instrByte2 = VL_RAND_RESET_I(8);
@@ -929,10 +930,10 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->cpu__DOT__RegFile__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(32);
     }
-    for (int __Vi0=0; __Vi0<262144; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<1048576; ++__Vi0) {
         vlSelf->cpu__DOT__MemFile__DOT__ram_array[__Vi0] = VL_RAND_RESET_I(32);
     }
-    vlSelf->cpu__DOT__MemFile__DOT__addr = VL_RAND_RESET_I(18);
+    vlSelf->cpu__DOT__MemFile__DOT__addr = VL_RAND_RESET_I(20);
     vlSelf->__Vchglast__TOP__cpu__DOT__zero = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);

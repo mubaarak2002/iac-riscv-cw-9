@@ -22,7 +22,7 @@ VL_INLINE_OPT void Vcpu___024root___sequent__TOP__0(Vcpu___024root* vlSelf) {
     CData/*4:0*/ __Vdlyvdim0__cpu__DOT__RegFile__DOT__rom_array__v0;
     IData/*31:0*/ __Vdlyvval__cpu__DOT__RegFile__DOT__rom_array__v0;
     CData/*0:0*/ __Vdlyvset__cpu__DOT__RegFile__DOT__rom_array__v0;
-    IData/*17:0*/ __Vdlyvdim0__cpu__DOT__MemFile__DOT__ram_array__v0;
+    IData/*19:0*/ __Vdlyvdim0__cpu__DOT__MemFile__DOT__ram_array__v0;
     IData/*31:0*/ __Vdlyvval__cpu__DOT__MemFile__DOT__ram_array__v0;
     CData/*0:0*/ __Vdlyvset__cpu__DOT__MemFile__DOT__ram_array__v0;
     // Body
@@ -103,6 +103,7 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                                                  | (7U 
                                                     & (vlSelf->cpu__DOT__Instr 
                                                        >> 0xcU)));
+    vlSelf->cpu__DOT__isJALR = (0x67U == (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode));
     if ((0x40U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
         if ((0x20U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
             if ((0x10U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
@@ -470,7 +471,7 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                 vlSelf->cpu__DOT__RA2 = vlSelf->cpu__DOT__Decoder__DOT__rs2;
                 vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__r0;
                 vlSelf->cpu__DOT__WEn = 0U;
-                vlSelf->cpu__DOT__ALUsrc = 0U;
+                vlSelf->cpu__DOT__ALUsrc = 1U;
                 vlSelf->cpu__DOT__ALUctrl = 0U;
                 vlSelf->cpu__DOT__Resultsrc = 1U;
                 vlSelf->cpu__DOT__PCsrc = 0U;
@@ -772,7 +773,9 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
     vlSelf->RD1_Out = vlSelf->cpu__DOT__RD1;
     vlSelf->RD2_Out = vlSelf->cpu__DOT__RD2;
     vlSelf->ImmExt_Out = vlSelf->cpu__DOT__ImmExt;
-    vlSelf->cpu__DOT__PC_Target = (0xffffU & ((IData)(vlSelf->cpu__DOT__PC_Next_Cycle) 
+    vlSelf->cpu__DOT__PC_Target = (0xffffU & (((IData)(vlSelf->cpu__DOT__isJALR)
+                                                ? vlSelf->cpu__DOT__RD1
+                                                : (IData)(vlSelf->cpu__DOT__PC_Next_Cycle)) 
                                               + vlSelf->cpu__DOT__ImmExt));
     vlSelf->cpu__DOT__ALU_OP2 = ((IData)(vlSelf->cpu__DOT__ALUsrc)
                                   ? vlSelf->cpu__DOT__ImmExt
@@ -841,7 +844,7 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                                                 (vlSelf->cpu__DOT__RD1 
                                                  + vlSelf->cpu__DOT__ALU_OP2)))));
     vlSelf->cpu__DOT__zero = (0U == vlSelf->cpu__DOT__ALU_Result);
-    vlSelf->cpu__DOT__MemFile__DOT__addr = (0x3ffffU 
+    vlSelf->cpu__DOT__MemFile__DOT__addr = (0xfffffU 
                                             & vlSelf->cpu__DOT__ALU_Result);
     vlSelf->cpu__DOT__Memory_Read = vlSelf->cpu__DOT__MemFile__DOT__ram_array
         [vlSelf->cpu__DOT__MemFile__DOT__addr];
