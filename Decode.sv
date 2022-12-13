@@ -254,6 +254,40 @@ always_comb begin
 
     end
 
+
+        //this is the case for the JALr operation
+        //this is a jump to  a new destination from a register.
+    7'b1100111: begin
+
+        //read data from register 1 ( pc = x[r1] + immOp)
+        assign RdAdd1 = rs1;
+        //using immidiate, not register 2
+        assign RdAdd2 = rs2;
+        //not writing to registers (writing to PC reg)
+        assign WrAddr = rd;
+        //need to not write
+        assign RegWrite = 1'b0;
+        //ALU is cut off from calculations due to the jump_calc Block
+        assign ALUsrc = 1'b0;
+        //ALU is cut off from calculations due to the jump_calc Block
+        assign ALUctrl = 4'b0;
+        //doesnt matter as not being stored anywher
+        assign ResultSrc = 1'b0;
+        //get new PC value from the Jump_calc Module
+        assign PCSrc = 1'b1;
+        //want the Immidiate to be calculated
+        assign ImmOp = Imm;
+        //uses the first 11 bits, which is the same as load instructions
+        assign Immsrc = 3'b100;
+        //not writing to memory
+        assign MemWrite = MemWrite = 1'b0;
+        //output only needed for x[rd] = PC + upImm
+        assign PC = PC = {(PCWIDTH){1'b0}};
+
+    end
+
+
+
     //this is the case for Load Upper Immidiate Operations (Store the upper immidiate in rd)
     //note add upper immidiate is just an add opperation (use add to do it)
     7'b0110111: begin
