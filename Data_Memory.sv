@@ -8,16 +8,16 @@ module Data_Memory #(
     output logic [DATA_WIDTH-1:0]       ReadData
 );
 
-
-    logic [DATA_WIDTH-1:0]  rom_array   [2**ADDRESS_WIDTH-1:0];
-
-    initial begin
-        $readmemh("f1_tests.s.hex", rom_array);
-    end;
+    logic [DATA_WIDTH-1:0]  ram_array   [2**ADDRESS_WIDTH-1:0];
+    logic [ADDRESS_WIDTH-1:0] addr;
 
     always_ff @(posedge clk) begin
-        if (WEN) rom_array[ALUresult[ADDRESS_WIDTH-1:0]] <= WriteData;
-        ReadData <= rom_array[ALUresult[ADDRESS_WIDTH-1:0]];
+        if (WEN) ram_array[addr] <= WriteData;
+    end
+
+    always_comb begin
+        addr = ALUresult[ADDRESS_WIDTH-1:0];
+        ReadData = ram_array[addr];
     end
 
 

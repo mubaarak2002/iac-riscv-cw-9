@@ -65,6 +65,7 @@ class Vcpu___024root final : public VerilatedModule {
         SData/*15:0*/ cpu__DOT__PC_Target;
         SData/*15:0*/ cpu__DOT__PC_to_Extend;
         SData/*15:0*/ cpu__DOT__ProgramCounter__DOT__next_PC;
+        SData/*15:0*/ cpu__DOT__MemFile__DOT__addr;
         VL_OUT(ImmExt_Out,31,0);
         VL_OUT(Instruction_Out,31,0);
         VL_OUT(RD1_Out,31,0);
@@ -78,9 +79,9 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__RD2;
         IData/*31:0*/ cpu__DOT__Instr;
         IData/*24:0*/ cpu__DOT__ImmOp;
-        IData/*31:0*/ cpu__DOT__ImmExt;
     };
     struct {
+        IData/*31:0*/ cpu__DOT__ImmExt;
         IData/*31:0*/ cpu__DOT__ALU_OP2;
         IData/*31:0*/ cpu__DOT__ALU_Result;
         IData/*31:0*/ cpu__DOT__DOut;
@@ -89,7 +90,7 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*19:0*/ cpu__DOT__Decoder__DOT__UpperImm;
         VlUnpacked<CData/*7:0*/, 65536> cpu__DOT__PCMem__DOT__rom_array;
         VlUnpacked<IData/*31:0*/, 32> cpu__DOT__RegFile__DOT__rom_array;
-        VlUnpacked<IData/*31:0*/, 65536> cpu__DOT__MemFile__DOT__rom_array;
+        VlUnpacked<IData/*31:0*/, 65536> cpu__DOT__MemFile__DOT__ram_array;
         VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
     };
 

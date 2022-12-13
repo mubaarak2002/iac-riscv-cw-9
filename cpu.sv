@@ -110,7 +110,7 @@ ProgramCounter ProgramCounter (
 PCTarget PCTarget (
 
     .ImmExt     (ImmExt),
-    .PC         (PC),
+    .PC         (PC_Next_Cycle),
     .PC_Target  (PC_Target)
 );
 
@@ -183,9 +183,9 @@ ALU ALU (
 );
 
 Data_Memory MemFile (
-    .ALUresult    (Data_Out),
+    .ALUresult    (ALU_Result),
     .clk          (clk),
-    .WEN           (MemWrite),
+    .WEN          (MemWrite),
     .WriteData    (RD2),
     .ReadData     (Memory_Read)
 );

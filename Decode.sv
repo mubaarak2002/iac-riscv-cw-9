@@ -86,15 +86,6 @@ always_comb begin
     //contains every possible jump instruction
     Imm = Instruction [31:7];
 
-/*commented out because is done by sign_Extend
-
-    //implemented only if time allows:
-    UpperImm = Instruction[31:12];
-
-    //used for shifting instructions
-    ShortImm = Instruction[24:20];
-
-*/
 
     //this is the opcode of the function
     opcode = Instruction [6:0];
@@ -155,7 +146,7 @@ always_comb begin
         //ALU takes input from the Immidiate Extend on ALU_Mux
         assign ALUsrc = 1'b1;
         //Opcode is defined above 
-        assign ALUctrl = ALUopcode;
+        assign ALUctrl = {1'b0, branchcode};
         //result should come from ALU, not memory
         assign ResultSrc = 1'b0;
         //PC is next address, no jump occurred
