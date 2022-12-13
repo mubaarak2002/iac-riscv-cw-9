@@ -42,7 +42,7 @@ module cpu #(
     output logic [ADDRESS_WIDTH-1:0]    RA1_Out,
     output logic [ADDRESS_WIDTH-1:0]    RA2_Out,
     output logic                        PCsrc_Out,
-    output logic                        Resultsrc_Out,
+    output logic [1:0]                  Resultsrc_Out,
     output logic                        MemWrite_Out,
     output logic [ALUCTRL_WIDTH-1:0]    ALUctrl_Out,
     output logic                        ALUsrc_Out,
@@ -202,12 +202,13 @@ Data_Memory MemFile (
     .ReadData     (Memory_Read)
 );
 
-mux_2 DoutMux (
+mux_3 DoutMux (
 
-    .option0  (ALU_Result),
-    .option1  (Memory_Read),
-    .sel      (Resultsrc),
-    .dout     (DOut)
+    .ALU_result     (ALU_Result),
+    .ReadData       (Memory_Read),
+    .PC             (PC_Next_Cycle),
+    .sel            (Resultsrc),
+    .dout           (DOut)
 
 );
 

@@ -20,7 +20,8 @@ module Decode #(
     //other parameters
     parameter OPCODEW = 7,
     parameter PCWIDTH = 16,
-    parameter BRCHCDEW = 3
+    parameter BRCHCDEW = 3,
+    parameter RESULTSRCW = 2
 
 )(
     //inputs
@@ -32,7 +33,7 @@ module Decode #(
     //ALU & Results Outputs
     output logic [ALUCTRLW-1:0]   ALUctrl,
     output logic                  ALUsrc,
-    output logic                  ResultSrc,
+    output logic [RESULTSRCW-1:0] ResultSrc,
 
 
     //Memory Outputs
@@ -119,7 +120,7 @@ always_comb begin
         //Opcode is defined above 
         assign ALUctrl = ALUopcode;
         //result should come from ALU, not memory
-        assign ResultSrc = 1'b0;
+        assign ResultSrc = 1'b00;
         //PC is next address, no jump occurred
         assign PCSrc = 1'b0;
 
@@ -149,7 +150,7 @@ always_comb begin
         //Opcode is defined above 
         assign ALUctrl = {1'b0, branchcode};
         //result should come from ALU, not memory
-        assign ResultSrc = 1'b0;
+        assign ResultSrc = 2'b00;
         //PC is next address, no jump occurred
         assign PCSrc = 1'b0;
 
@@ -180,7 +181,7 @@ always_comb begin
         //need to add, such that offset + r2 equals address. instruction gives 010, dont know why, so doing manually
         assign ALUctrl = 4'b0000;
         //doesnt matter, but make data output be value stored to make debugging easier
-        assign ResultSrc = 1'b1;
+        assign ResultSrc = 2'b01;
         //no jumps occurring
         assign PCSrc = 1'b0;
         //pass whole immidiate value
@@ -210,7 +211,7 @@ always_comb begin
         //use ALU code because it doesnt change the output
         assign ALUctrl = 4'b0000;
         //Value needs to be stored into the register designated in rs2, need input from data memory
-        assign ResultSrc = 1'b1;
+        assign ResultSrc = 2'b01;
         //no jumps occurring
         assign PCSrc = 0'b0;
         //pass whole immidiate value
@@ -239,8 +240,8 @@ always_comb begin
         assign ALUsrc = 1'b1;
         //ALU is cut off from calculations due to the jump_calc Block
         assign ALUctrl = 4'b0;
-        //doesnt matter as not being stored anywhere
-        assign ResultSrc = 1'b0;
+        //next PC value selected
+        assign ResultSrc = 2'b10;
         //get new PC value from the Jump_calc Module
         assign PCSrc = 1'b1;
         //want the Immidiate to be calculated 
@@ -272,7 +273,7 @@ always_comb begin
         //ALU is cut off from calculations due to the jump_calc Block
         assign ALUctrl = 4'b0;
         //doesnt matter as not being stored anywher
-        assign ResultSrc = 1'b0;
+        assign ResultSrc = 2'b00;
         //get new PC value from the Jump_calc Module
         assign PCSrc = 1'b1;
         //want the Immidiate to be calculated
@@ -305,7 +306,7 @@ always_comb begin
         //use ALU code because it doesnt change the output
         assign ALUctrl = 4'b0000;
         //No use for data memory
-        assign ResultSrc = 1'b0;
+        assign ResultSrc = 2'b00;
         //no jumps occurring
         assign PCSrc = 0'b0;
         //pass whole immidiate value
@@ -335,7 +336,7 @@ always_comb begin
         //use ALU code because it doesnt change the output
         assign ALUctrl = 4'b0000;
         //No use for data memory
-        assign ResultSrc = 1'b0;
+        assign ResultSrc = 2'b0;
         //no jumps occurring
         assign PCSrc = 0'b0;
         //pass whole immidiate value
@@ -387,7 +388,7 @@ always_comb begin
             assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b1000;
             //want result from ALU
-            assign ResultSrc = 1'b0;
+            assign ResultSrc = 2'b0;
 
             //if zero = 1, PCsrc = jump output
             assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
@@ -421,7 +422,7 @@ always_comb begin
             assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b1000;
             //want result from ALU
-            assign ResultSrc = 1'b0;
+            assign ResultSrc = 2'b0;
 
             //if zero = 1, PCsrc = jump output
             //this is the only change from beq
@@ -456,7 +457,7 @@ always_comb begin
             assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0010;
             //want result from ALU
-            assign ResultSrc = 1'b0;
+            assign ResultSrc = 2'b0;
 
             //if zero = 1, x[r1] > x[r2], PCsrc = jump output
             assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
@@ -490,7 +491,7 @@ always_comb begin
             assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0011;
             //want result from ALU
-            assign ResultSrc = 1'b0;
+            assign ResultSrc = 2'b0;
 
             //if zero = 1, x[r1] > x[r2], PCsrc = jump output
             assign PCSrc = (ZERO == 1) ? 1'b1 : 1'b0;
@@ -528,7 +529,7 @@ always_comb begin
             assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0010;
             //want result from ALU
-            assign ResultSrc = 1'b0;
+            assign ResultSrc = 2'b0;
 
             //if zero = 1, x[r1] > x[r2], PCsrc = jump output
             assign PCSrc = (ZERO == 1) ? 1'b0 : 1'b1;
@@ -562,7 +563,7 @@ always_comb begin
             assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0011;
             //want result from ALU
-            assign ResultSrc = 1'b0;
+            assign ResultSrc = 2'b0;
 
             //if zero = 1, x[r1] > x[r2], PCsrc = jump output
             assign PCSrc = (ZERO == 1) ? 1'b0 : 1'b1;
@@ -591,7 +592,7 @@ always_comb begin
             assign RegWrite = 1'b0;
             assign ALUsrc = 1'b1;
             assign ALUctrl = 4'b0;
-            assign ResultSrc = 1'b0;
+            assign ResultSrc = 2'b0;
             assign PCSrc = 1'b0;
             assign ImmOp = 25'b0;
             assign Immsrc = 3'b000;
@@ -615,7 +616,7 @@ always_comb begin
         assign RegWrite = 1'b0;
         assign ALUsrc = 1'b1;
         assign ALUctrl = 4'b0;
-        assign ResultSrc = 1'b0;
+        assign ResultSrc = 2'b0;
         assign PCSrc = 1'b0;
         assign ImmOp = 25'b0;
         assign Immsrc = 3'b000;
