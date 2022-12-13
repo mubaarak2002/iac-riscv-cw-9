@@ -604,7 +604,7 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
         if ((1U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
             vlSelf->cpu__DOT__RA1 = vlSelf->cpu__DOT__Decoder__DOT__rs1;
             vlSelf->cpu__DOT__RA2 = vlSelf->cpu__DOT__Decoder__DOT__r0;
-            vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__rs2;
+            vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__rd;
             vlSelf->cpu__DOT__WEn = 1U;
             vlSelf->cpu__DOT__ALUsrc = 1U;
             vlSelf->cpu__DOT__ALUctrl = 0U;
