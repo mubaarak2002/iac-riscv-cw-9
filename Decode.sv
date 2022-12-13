@@ -203,7 +203,7 @@ always_comb begin
         //storage register address location
         assign WrAddr = rs2;
         //writing value to a register, so need to enable Write Enable
-        assign RegWrite = 0'b1;
+        assign RegWrite = 1'b1;
         //ALU is reading immidiate for offset
         assign ALUsrc = 1'b1;
         //use ALU code because it doesnt change the output
@@ -298,7 +298,7 @@ always_comb begin
         //storage register address location
         assign WrAddr = rd;
         //writing value to a register, so need to enable Write Enable
-        assign RegWrite = 0'b1;
+        assign RegWrite = 1'b1;
         //ALU is reading immidiate for offset
         assign ALUsrc = 1'b1;
         //use ALU code because it doesnt change the output
@@ -328,7 +328,7 @@ always_comb begin
         //storage register address location
         assign WrAddr = rd;
         //writing value to a register, so need to enable Write Enable
-        assign RegWrite = 0'b1;
+        assign RegWrite = 1'b1;
         //ALU is reading immidiate for offset
         assign ALUsrc = 1'b1;
         //use ALU code because it doesnt change the output

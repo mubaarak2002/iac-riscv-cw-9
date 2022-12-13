@@ -22,13 +22,8 @@ VL_ATTR_COLD void Vcpu___024root___initial__TOP__0(Vcpu___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___initial__TOP__0\n"); );
-    // Init
-    VlWide<3>/*95:0*/ __Vtemp_h5d3392b8__0;
     // Body
-    __Vtemp_h5d3392b8__0[0U] = 0x2e6d656dU;
-    __Vtemp_h5d3392b8__0[1U] = 0x6e737472U;
-    __Vtemp_h5d3392b8__0[2U] = 0x69U;
-    VL_READMEM_N(true, 8, 65536, 0, VL_CVT_PACK_STR_NW(3, __Vtemp_h5d3392b8__0)
+    VL_READMEM_N(true, 8, 65536, 0, std::string{"pdf.hex"}
                  ,  &(vlSelf->cpu__DOT__PCMem__DOT__rom_array)
                  , 0, ~0ULL);
 }
