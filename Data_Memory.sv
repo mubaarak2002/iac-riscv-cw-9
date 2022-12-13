@@ -11,6 +11,10 @@ module Data_Memory #(
     logic [DATA_WIDTH-1:0]  ram_array   [2**ADDRESS_WIDTH-1:0];
     logic [ADDRESS_WIDTH-1:0] addr;
 
+    initial begin
+        $readmemh("sine.mem", ram_array, 65536);
+    end
+    
     always_ff @(posedge clk) begin
         if (WEN) ram_array[addr] <= WriteData;
     end
