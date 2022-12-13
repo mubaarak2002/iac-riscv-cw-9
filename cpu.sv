@@ -69,7 +69,7 @@ logic [PC_WIDTH-1:0] PC_Target;
 logic [PC_WIDTH-1:0] PC_to_Extend;
 logic PCsrc;
 logic zero;
-logic Resultsrc;
+logic [1:0] Resultsrc;
 logic MemWrite;
 logic WEn;
 logic [DATA_WIDTH-1:0] MemWrAdd;
