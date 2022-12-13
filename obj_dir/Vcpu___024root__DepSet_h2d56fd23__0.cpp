@@ -179,18 +179,48 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                     vlSelf->cpu__DOT__PC_to_Extend = 0U;
                 }
             } else if ((4U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
-                vlSelf->cpu__DOT__RA1 = 0U;
-                vlSelf->cpu__DOT__RA2 = 0U;
-                vlSelf->cpu__DOT__WA3 = 0U;
-                vlSelf->cpu__DOT__WEn = 0U;
-                vlSelf->cpu__DOT__ALUsrc = 1U;
-                vlSelf->cpu__DOT__ALUctrl = 0U;
-                vlSelf->cpu__DOT__Resultsrc = 0U;
-                vlSelf->cpu__DOT__PCsrc = 0U;
-                vlSelf->cpu__DOT__ImmOp = 0U;
-                vlSelf->cpu__DOT__ImmSel = 0U;
-                vlSelf->cpu__DOT__MemWrite = 0U;
-                vlSelf->cpu__DOT__PC_to_Extend = 0U;
+                if ((2U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
+                    if ((1U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
+                        vlSelf->cpu__DOT__RA1 = vlSelf->cpu__DOT__Decoder__DOT__rs1;
+                        vlSelf->cpu__DOT__RA2 = vlSelf->cpu__DOT__Decoder__DOT__rs2;
+                        vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__rd;
+                        vlSelf->cpu__DOT__WEn = 0U;
+                        vlSelf->cpu__DOT__ALUsrc = 0U;
+                        vlSelf->cpu__DOT__ALUctrl = 0U;
+                        vlSelf->cpu__DOT__Resultsrc = 0U;
+                        vlSelf->cpu__DOT__PCsrc = 1U;
+                        vlSelf->cpu__DOT__ImmOp = vlSelf->cpu__DOT__Decoder__DOT__Imm;
+                        vlSelf->cpu__DOT__ImmSel = 4U;
+                        vlSelf->cpu__DOT__MemWrite = 0U;
+                        vlSelf->cpu__DOT__PC_to_Extend = 0U;
+                    } else {
+                        vlSelf->cpu__DOT__RA1 = 0U;
+                        vlSelf->cpu__DOT__RA2 = 0U;
+                        vlSelf->cpu__DOT__WA3 = 0U;
+                        vlSelf->cpu__DOT__WEn = 0U;
+                        vlSelf->cpu__DOT__ALUsrc = 1U;
+                        vlSelf->cpu__DOT__ALUctrl = 0U;
+                        vlSelf->cpu__DOT__Resultsrc = 0U;
+                        vlSelf->cpu__DOT__PCsrc = 0U;
+                        vlSelf->cpu__DOT__ImmOp = 0U;
+                        vlSelf->cpu__DOT__ImmSel = 0U;
+                        vlSelf->cpu__DOT__MemWrite = 0U;
+                        vlSelf->cpu__DOT__PC_to_Extend = 0U;
+                    }
+                } else {
+                    vlSelf->cpu__DOT__RA1 = 0U;
+                    vlSelf->cpu__DOT__RA2 = 0U;
+                    vlSelf->cpu__DOT__WA3 = 0U;
+                    vlSelf->cpu__DOT__WEn = 0U;
+                    vlSelf->cpu__DOT__ALUsrc = 1U;
+                    vlSelf->cpu__DOT__ALUctrl = 0U;
+                    vlSelf->cpu__DOT__Resultsrc = 0U;
+                    vlSelf->cpu__DOT__PCsrc = 0U;
+                    vlSelf->cpu__DOT__ImmOp = 0U;
+                    vlSelf->cpu__DOT__ImmSel = 0U;
+                    vlSelf->cpu__DOT__MemWrite = 0U;
+                    vlSelf->cpu__DOT__PC_to_Extend = 0U;
+                }
             } else if ((2U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
                 if ((1U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
                     if ((4U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
