@@ -88,6 +88,8 @@ logic [DATA_WIDTH-1:0] ALU_OP2;
 logic [DATA_WIDTH-1:0] ALU_Result;
 logic [DATA_WIDTH-1:0] DOut;
 logic [DATA_WIDTH-1:0] Memory_Read;
+logic [DATA_WIDTH-1:0] Jump_Calc_Input;
+logic isJALR;
 
 
 
@@ -110,7 +112,7 @@ ProgramCounter ProgramCounter (
 PCTarget PCTarget (
 
     .ImmExt     (ImmExt),
-    .PC         (PC_Next_Cycle),
+    .PC         (Jump_Calc_Input),
     .PC_Target  (PC_Target)
 );
 
@@ -118,6 +120,15 @@ instr_mem PCMem (
 
     .PC       (PC_Next_Cycle),
     .instr    (Instr)
+
+);
+
+mux_2 JumpMux (
+
+    .option0    (PC_Next_Cycle),
+    .option1    (RD1),
+    .sel        (isJALR),
+    .dout       (Jump_Calc_Input)
 
 );
 
@@ -137,7 +148,8 @@ Decode Decoder (
     .ImmOp        (ImmOp),
     .Immsrc       (ImmSel),
     .PC           (PC_to_Extend),
-    .PCSrc        (PCsrc)
+    .PCSrc        (PCsrc),
+    .isJALR       (isJALR)
 
 );
 

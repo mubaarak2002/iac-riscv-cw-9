@@ -48,7 +48,8 @@ module Decode #(
     output logic [PCWIDTH-1:0]    PC,
 
     //PC outputs
-    output logic                  PCSrc
+    output logic                  PCSrc,
+    output logic                  isJALR
 
 );
 
@@ -96,11 +97,11 @@ always_comb begin
     //this is the specific bits needed for an ALU instruction:
     ALUopcode = {Instruction[30], Instruction[14:12]};
 
+    //this is the mux to select isJALR, and is 0 if not JALR and 1 if JALR
+    isJALR = (opcode == 7'b1100111) ? 1'b1 : 1'b0;
+
 
     //now that the predetermined signals are defined, all possible opcodes can be considered
-    
-    
-    
     
     case(opcode)
 
@@ -252,40 +253,6 @@ always_comb begin
         assign PC = {(PCWIDTH){1'b0}};
 
     end
-
-/*Decided that this wouldn't be implemented on our cpu
-        //this is the case for the JALr operation
-        //this is a jump to  a new destination from a register.
-    7'b1100111: begin
-
-        //read data from register 1 ( pc = x[r1] + immOp)
-        assign RdAdd1 = ;
-        //
-        assign RdAdd2 = ;
-        //
-        assign WrAddr = ;
-        //
-        assign RegWrite = ;
-        //
-        assign ALUsrc = ;
-        //
-        assign ALUctrl = ;
-        //
-        assign ResultSrc = ;
-        //
-        assign PCSrc = ;
-        //
-        assign ImmOp = ;
-        //
-        assign Immsrc = ;
-        //
-        assign MemWrite = ;
-        //
-        assign PC = ;
-
-    end
-
-*/
 
     //this is the case for Load Upper Immidiate Operations (Store the upper immidiate in rd)
     //note add upper immidiate is just an add opperation (use add to do it)
