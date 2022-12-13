@@ -34,4 +34,5 @@
 'a' = author
 'c' = coAuthor (when applicable)
 'd' = helped debug (if not authors)
+'h' = not author, but contributed later on 
  
