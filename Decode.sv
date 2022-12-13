@@ -280,9 +280,9 @@ always_comb begin
         //uses the first 11 bits, which is the same as load instructions
         assign Immsrc = 3'b100;
         //not writing to memory
-        assign MemWrite = MemWrite = 1'b0;
+        assign MemWrite = 1'b0;
         //output only needed for x[rd] = PC + upImm
-        assign PC = PC = {(PCWIDTH){1'b0}};
+        assign PC = {(PCWIDTH){1'b0}};
 
     end
 
