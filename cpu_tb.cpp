@@ -1,7 +1,7 @@
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "Vcpu.h"
-//#include "VRegFile.h"
+#include "vbuddy.cpp"
 
 #define MAX_SIM_CYC 20000
 
@@ -19,12 +19,19 @@ int main(int argc, char **argv, char **env) {
 
     top->clk = 0;
     top->rst = 0;
+
+    if (vbdOpen()!=1) return(-1);
     
     for (simcyc=0; simcyc < MAX_SIM_CYC; simcyc++){
         for (tick=0; tick<2; tick++){
             tfp->dump (2*simcyc+tick);
             top->clk = !top->clk;
             top->eval();
+        }
+
+        if (simcyc > 5000){
+            vbdPlot(int (top->Data_Out), 0, 255);
+            vbdCycle(simcyc);
         }
 
         if (Verilated::gotFinish()){
