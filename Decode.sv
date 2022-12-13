@@ -201,9 +201,9 @@ always_comb begin
         //doesn't matter as immidiate operand is being used
         assign RdAdd2 = r0;
         //storage register address location
-        assign WrAddr = rs2;
+        assign WrAddr = rd;
         //writing value to a register, so need to enable Write Enable
-        assign RegWrite = 0'b1;
+        assign RegWrite = 1'b1;
         //ALU is reading immidiate for offset
         assign ALUsrc = 1'b1;
         //use ALU code because it doesnt change the output
