@@ -3,7 +3,7 @@
 #include "Vcpu.h"
 #include "vbuddy.cpp"
 
-#define MAX_SIM_CYC 100000
+#define MAX_SIM_CYC 10000000
 
 int main(int argc, char **argv, char **env) {
     int simcyc;     // simulation clock count
@@ -29,8 +29,8 @@ int main(int argc, char **argv, char **env) {
             top->eval();
         }
 
-        if (simcyc > 80000){
-            vbdPlot(int (top->Data_Out), 0, 255);
+        if (simcyc > 700000){
+            vbdPlot(int (top->a0), 0, 255);
             vbdCycle(simcyc);
         }
 

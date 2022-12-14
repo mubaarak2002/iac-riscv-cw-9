@@ -9,7 +9,8 @@ module reg_file #(
     input logic  [WORD_WIDTH-1:0]    WD3,
     input logic                      WEN,
     output logic [WORD_WIDTH-1:0]    RD1,
-    output logic [WORD_WIDTH-1:0]    RD2
+    output logic [WORD_WIDTH-1:0]    RD2,
+    output logic [WORD_WIDTH-1:0]    a0
 );
 
     logic [WORD_WIDTH-1:0] rom_array[2**ADDRESS_WIDTH-1:0];
@@ -21,6 +22,7 @@ end
 always_comb begin
     RD1 = rom_array[RA1];
     RD2 = rom_array[RA2];
+    a0 = rom_array[10];
 end
 
 endmodule

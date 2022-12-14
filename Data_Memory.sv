@@ -12,7 +12,7 @@ module Data_Memory #(
     logic [ADDRESS_WIDTH-1:0] addr;
 
     initial begin
-        $readmemh("sine.mem", ram_array, 65536);
+        $readmemh("gaussian.mem", ram_array, 65536);
     end
     
     always_ff @(posedge clk) begin

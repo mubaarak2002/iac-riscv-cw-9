@@ -53,7 +53,8 @@ module cpu #(
     output logic [ADDRESS_WIDTH-1:0]    WrAddr_Out,
 
     //system output
-    output logic [DATA_WIDTH-1:0]       Data_Out
+    output logic [DATA_WIDTH-1:0]       Data_Out,
+    output logic [DATA_WIDTH-1:0]       a0
 
     
     // input logic                   trigger,
@@ -164,7 +165,8 @@ reg_file RegFile (
     .WD3      (DOut),
     .WEN      (WEn),
     .RD1      (RD1),
-    .RD2      (RD2)
+    .RD2      (RD2),
+    .a0       (a0)
 
 
 );

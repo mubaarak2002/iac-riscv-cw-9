@@ -218,8 +218,8 @@ always_comb begin
         assign ImmOp = Imm;
         //want the immidiate for the load instruction
         assign Immsrc = 3'b100;
-        //need to write to data memory
-        assign MemWrite = 1'b1;
+        //dont need to write to data memory
+        assign MemWrite = 1'b0;
         //output only needed for x[rd] = PC + upImm
         assign PC = {(PCWIDTH){1'b0}};
 
