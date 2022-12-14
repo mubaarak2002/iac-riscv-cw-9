@@ -75,7 +75,7 @@ always_comb begin
     rd  = Instruction[11:7];
 
     //this is the "zero address", which corresponds to register x0 which always contains zero
-    //mostly used in this program for all "irelevant adresses" for simplicity.
+    //mostly used in this program for all "irrelevant adresses" for simplicity.
     r0 = 5'b00000;
 
     //sometimes replaced with immidaiate operand, and are not always applicable
@@ -83,8 +83,8 @@ always_comb begin
     rs2 = Instruction[24:20];
 
     //extract the immidiate operand from its position in the Instruction
-    //(only useful when opcode asks for immidiate, else just gibberish
-    //needs to be decoded by the sign_extend module as per 
+    //(only useful when opcode asks for immidiate, else just gibberish)
+    //needs to be decoded by the sign_extend module as per instruction format
     //contains every possible jump instruction
     Imm = Instruction [31:7];
 
