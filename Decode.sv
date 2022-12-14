@@ -235,7 +235,8 @@ always_comb begin
         //write new PC to register rd
         assign WrAddr = rd;
         //need to write return address to register
-        assign RegWrite = 1'b1;
+        if (branchcode == 3'b111) RegWrite = 1'b0;
+        else RegWrite = 1'b1;
         //ALU is cut off from calculations due to the jump_calc Block
         assign ALUsrc = 1'b1;
         //ALU is cut off from calculations due to the jump_calc Block
