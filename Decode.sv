@@ -14,7 +14,6 @@ module Decode #(
     //read and write parameters
     parameter RDADDR1W = 5,
     parameter RDADDR2W = 5,
-    parameter MEMWRITEW = 32,
     parameter WRADDRW = 5,
 
     //other parameters
@@ -50,7 +49,11 @@ module Decode #(
 
     //PC outputs
     output logic [1:0]            PCSrc,
-    output logic                  isJALR
+    output logic                  isJALR,
+
+    //other outputs
+    output logic                  cacheEn
+
 
 );
 
@@ -66,41 +69,43 @@ logic [SHORTIMMW-1:0]   ShortImm;
 logic [OPCODEW-1:0]     opcode;
 logic [ALUCTRLW-1:0]    ALUopcode;
 logic [RDADDR1W-1:0]    r0;
-logic [BRCHCDEW-1:0]  branchcode;
+logic [BRCHCDEW-1:0]    branchcode;
 
 
 
 always_comb begin
     //rd is used across all commands, and is the destination register
-    rd  = Instruction[11:7];
+    assign rd  = Instruction[11:7];
 
     //this is the "zero address", which corresponds to register x0 which always contains zero
-    //mostly used in this program for all "irrelevant adresses" for simplicity.
-    r0 = 5'b00000;
+    //mostly used in this program for all "irelevant adresses" for simplicity.
+    assign r0 = 5'b00000;
 
     //sometimes replaced with immidaiate operand, and are not always applicable
-    rs1 = Instruction[19:15];
-    rs2 = Instruction[24:20];
+    assign rs1 = Instruction[19:15];
+    assign rs2 = Instruction[24:20];
 
     //extract the immidiate operand from its position in the Instruction
-    //(only useful when opcode asks for immidiate, else just gibberish)
-    //needs to be decoded by the sign_extend module as per instruction format
+    //(only useful when opcode asks for immidiate, else just gibberish
+    //needs to be decoded by the sign_extend module as per 
     //contains every possible jump instruction
-    Imm = Instruction [31:7];
+    assign Imm = Instruction [31:7];
 
 
     //this is the opcode of the function
-    opcode = Instruction [6:0];
+    assign opcode = Instruction [6:0];
 
     //This is the branchcode, which indicates what Branch instruction is to be done.
-    branchcode = Instruction [14:12];
+    assign branchcode = Instruction [14:12];
 
     //this is the specific bits needed for an ALU instruction:
-    ALUopcode = {Instruction[30], Instruction[14:12]};
+    assign ALUopcode = {Instruction[30], Instruction[14:12]};
 
     //this is the mux to select isJALR, and is 0 if not JALR and 1 if JALR
-    isJALR = (opcode == 7'b1100111) ? 1'b1 : 1'b0;
+    assign isJALR = (opcode == 7'b1100111) ? 1'b1 : 1'b0;
 
+    //this is indicating that the cache needs to be accessed (ldr or str instruction)
+    assign cacheEn = (opcode == 0'b0100011 || opcode == 0'b0000011) ? 0'b1 : 0'b0;
 
     //now that the predetermined signals are defined, all possible opcodes can be considered
     
@@ -218,7 +223,7 @@ always_comb begin
         assign ImmOp = Imm;
         //want the immidiate for the load instruction
         assign Immsrc = 3'b100;
-        //dont need to write to data memory
+        //don't need to write to data memory
         assign MemWrite = 1'b0;
         //output only needed for x[rd] = PC + upImm
         assign PC = {(PCWIDTH){1'b0}};
@@ -235,8 +240,7 @@ always_comb begin
         //write new PC to register rd
         assign WrAddr = rd;
         //need to write return address to register
-        if (branchcode == 3'b111) RegWrite = 1'b0;
-        else RegWrite = 1'b1;
+        assign RegWrite = (branchcode == 3'b111) ? 1'b0 : 1'b1;
         //ALU is cut off from calculations due to the jump_calc Block
         assign ALUsrc = 1'b1;
         //ALU is cut off from calculations due to the jump_calc Block
@@ -405,7 +409,7 @@ always_comb begin
 
         end
 
-        //This is the bne, branch equal, the test is r1 r2 rd => x[rd] = x[r1] - x[r2].
+        //This is the bne, branch not equal, the test is r1 r2 rd => x[rd] = x[r1] - x[r2].
         //Thus, if ZERO = 0, they are equal, else they are not equal
         3'b001: begin
             
@@ -474,7 +478,7 @@ always_comb begin
 
         end
 
-        //This is the blt, branch less than (signed), the test is r1 r2 rd => x[rd] = x[r1] < x[r2].
+        //This is the blt, branch less than (unsigned), the test is r1 r2 rd => x[rd] = x[r1] < x[r2].
         //Thus, if ZERO = 1, x[r1] < x[r2], PCsrc = jump output
         3'b110: begin
             
@@ -487,7 +491,7 @@ always_comb begin
             assign RegWrite = 1'b0;
 
             //ALU instruction can be completed the same cycle, just ignore a small delay
-            // need to do rs1 > rs2 (signed) to see if they are equal
+            // need to do rs1 > rs2 (unsigned) to see if they are equal
             //using register not immidiate  
             assign ALUsrc = 1'b0;
             assign ALUctrl = 4'b0011;
@@ -514,7 +518,7 @@ always_comb begin
 
         //This is the bge, branch greater than (signed), the test is r1 r2 rd => x[rd] = x[r1] > x[r2].
         //Thus, if ZERO = 1, x[r1] > x[r2], PCsrc = jump output
-        3'b100: begin
+        3'b101: begin
             
             //the two registers in question
             assign RdAdd1 = rs1;
@@ -548,7 +552,7 @@ always_comb begin
 
         //This is the bgeu, branch greater than (unsigned signed), the test is r1 r2 rd => x[rd] = x[r1] < x[r2].
         //Thus, if ZERO = 1, x[r1] > x[r2], PCsrc = jump output
-        3'b110: begin
+        3'b111: begin
             
             //the two registers in question
             assign RdAdd1 = rs1;
