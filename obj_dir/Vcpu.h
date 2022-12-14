@@ -30,8 +30,8 @@ class Vcpu VL_NOT_FINAL : public VerilatedModel {
     VL_OUT8(&ZERO_Out,0,0);
     VL_OUT8(&RA1_Out,4,0);
     VL_OUT8(&RA2_Out,4,0);
-    VL_OUT8(&PCsrc_Out,0,0);
-    VL_OUT8(&Resultsrc_Out,0,0);
+    VL_OUT8(&PCsrc_Out,1,0);
+    VL_OUT8(&Resultsrc_Out,1,0);
     VL_OUT8(&MemWrite_Out,0,0);
     VL_OUT8(&ALUctrl_Out,3,0);
     VL_OUT8(&ALUsrc_Out,0,0);

@@ -20,17 +20,17 @@ class Vcpu___024root final : public VerilatedModule {
         VL_OUT8(ZERO_Out,0,0);
         VL_OUT8(RA1_Out,4,0);
         VL_OUT8(RA2_Out,4,0);
-        VL_OUT8(PCsrc_Out,0,0);
-        VL_OUT8(Resultsrc_Out,0,0);
+        VL_OUT8(PCsrc_Out,1,0);
+        VL_OUT8(Resultsrc_Out,1,0);
         VL_OUT8(MemWrite_Out,0,0);
         VL_OUT8(ALUctrl_Out,3,0);
         VL_OUT8(ALUsrc_Out,0,0);
         VL_OUT8(Immsrc_Out,2,0);
         VL_OUT8(RegWrite_Out,0,0);
         VL_OUT8(WrAddr_Out,4,0);
-        CData/*0:0*/ cpu__DOT__PCsrc;
+        CData/*1:0*/ cpu__DOT__PCsrc;
         CData/*0:0*/ cpu__DOT__zero;
-        CData/*0:0*/ cpu__DOT__Resultsrc;
+        CData/*1:0*/ cpu__DOT__Resultsrc;
         CData/*0:0*/ cpu__DOT__MemWrite;
         CData/*0:0*/ cpu__DOT__WEn;
         CData/*4:0*/ cpu__DOT__RA1;
@@ -62,7 +62,6 @@ class Vcpu___024root final : public VerilatedModule {
         SData/*15:0*/ cpu__DOT__PC;
         SData/*15:0*/ cpu__DOT__PC_new;
         SData/*15:0*/ cpu__DOT__PC_to_PCreg;
-        SData/*15:0*/ cpu__DOT__PC_Next_Cycle;
         SData/*15:0*/ cpu__DOT__PC_Target;
         SData/*15:0*/ cpu__DOT__PC_to_Extend;
         SData/*15:0*/ cpu__DOT__ProgramCounter__DOT__next_PC;
@@ -79,9 +78,9 @@ class Vcpu___024root final : public VerilatedModule {
         IData/*31:0*/ cpu__DOT__RD2;
         IData/*31:0*/ cpu__DOT__Instr;
         IData/*24:0*/ cpu__DOT__ImmOp;
+        IData/*31:0*/ cpu__DOT__ImmExt;
     };
     struct {
-        IData/*31:0*/ cpu__DOT__ImmExt;
         IData/*31:0*/ cpu__DOT__ALU_OP2;
         IData/*31:0*/ cpu__DOT__ALU_Result;
         IData/*31:0*/ cpu__DOT__DOut;

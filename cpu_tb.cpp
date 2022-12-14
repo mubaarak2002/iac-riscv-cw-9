@@ -3,7 +3,7 @@
 #include "Vcpu.h"
 #include "vbuddy.cpp"
 
-#define MAX_SIM_CYC 20000
+#define MAX_SIM_CYC 200
 
 int main(int argc, char **argv, char **env) {
     int simcyc;     // simulation clock count
