@@ -26,7 +26,7 @@
 | instr_set |  |  |  |  |
 | cache.sv |  |  |  |  |
 | cache_tb.cpp |  |  |  |  |
-|  |  |  |  |  |
+| JumpLogic.sv |  |  |  |  |
 |  |  |  |  |  |
 
 
