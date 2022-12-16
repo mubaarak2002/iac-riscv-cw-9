@@ -62,29 +62,29 @@ CID:
 
 | module      | Yomna | Omar | Mubaraak | Will |
 | :------:    | :------: | :------: | :------: | :------: |
-| ALU.sv |  |  |  |  |
+| ALU.sv |  | a |  |  |
 | Data_Memory.sv |  |  |  |  |
-| Decode.sv |  |  |  |  |
-| DtoEReg.sv |  |  |  |  |
-| EtoMReg.sv |  |  |  |  |
-| FtoDReg.sv |  |  |  |  |
-| MtoWReg.sv |  |  |  |  |
+| Decode.sv |  | a |  |  |
+| DtoEReg.sv |  | h |  |  |
+| EtoMReg.sv |  | h |  |  |
+| FtoDReg.sv |  | h |  |  |
+| MtoWReg.sv |  | h |  |  |
 | PCTarget.sv |  |  |  |  |
 | PC_reg.sv |  |  |  |  |
 | ProgramCounter.sv |  |  |  |  |
-| README.md |  |  |  |  |
+| README.md |  | a |  |  |
 | Sign_Extend.sv |  |  |  |  |
-| cpu.sv |  |  |  |  |
+| cpu.sv |  | a |  |  |
 | cpu_tb.cpp |  |  |  |  |
-| instr_mem.sv |  |  |  |  |
+| instr_mem.sv |  | d |  |  |
 | jump_calc.sv |  |  |  |  |
 | mux_2.sv |  |  |  |  |
 | pc_inc.sv |  |  |  |  |
 | pipeline.md |  |  |  |  |
-| reg_file.sv |  |  |  |  |
-| runCPU.sh |  |  |  |  |
+| reg_file.sv |  | a |  |  |
+| runCPU.sh |  | a |  |  |
 | instr_set |  |  |  |  |
-| cache.sv |  |  |  |  |
+| cache.sv |  | h |  |  |
 | cache_tb.cpp |  |  |  |  |
 | JumpLogic.sv |  |  |  |  |
 |  |  |  |  |  |

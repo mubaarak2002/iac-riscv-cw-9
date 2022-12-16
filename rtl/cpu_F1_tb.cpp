@@ -3,7 +3,7 @@
 #include "Vcpu.h"
 #include "vbuddy.cpp"
 
-#define MAX_SIM_CYC 500000
+#define MAX_SIM_CYC 300
 
 int main(int argc, char **argv, char **env) {
     int simcyc;     // simulation clock count
@@ -29,10 +29,15 @@ int main(int argc, char **argv, char **env) {
             top->eval();
         }
 
-        if (simcyc > 700000){
-            vbdPlot(int (top->a0), 0, 255);
-            vbdCycle(simcyc);
-        }
+        vbdBar(top->a0 & 0xFF);
+
+        //only needed for F1 program
+        //program goes too quick, so pause to see light values:
+        system("pause");
+        system("pause");
+        system("pause");
+        system("pause");
+        system("pause");
 
         if (Verilated::gotFinish()){
             exit(0);
