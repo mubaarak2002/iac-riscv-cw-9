@@ -51,7 +51,7 @@ CID: 01928696
 
 
 
-### Will Blaney: 
+### Will Blayney: 
 
 
 Github Username:  
@@ -60,7 +60,7 @@ CID:
 
 #### Personal Statement:
 
-
+Minimal contribution to final stages of project - please see relevant MCs. Yomna, Omar & Mubaraak did the CPU as a three!
 
 
 
