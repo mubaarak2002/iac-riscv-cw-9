@@ -78,17 +78,16 @@ CID:
 | README.md | c | a |  |  |
 | Sign_Extend.sv | a |  |  |  |
 | cpu.sv | h | a |  |  |
-| cpu_tb.cpp |  |  |  |  |
-| instr_mem.sv | a | d |  |  |
-// i think we can delete this | jump_calc.sv | a |  |  |  |
+| cpu_tb.cpp |  | a |  |  |
+| instr_mem.sv | a | h |  |  |
 | mux_2.sv | a |  |  |  |
-// not used either | pc_inc.sv |  |  |  |  |
 | pipeline.md | a |  |  |  |
 | reg_file.sv | h | a |  |  |
 | runCPU.sh |  | a |  |  |
 | instr_set | a |  |  |  |
 | cache.sv |  | h |  |  |
 | cache_tb.cpp |  |  |  |  |
+| F1_tb.cpp |  | a |  |  |
 | JumpLogic.sv |  |  |  |  |
 | mux_3.sv | a |  |  |  |
 |  |  |  |  |  |
@@ -99,7 +98,6 @@ CID:
 | :------:    | :------: | :------: |
 | 'a' | Author | Implemented most of the file's logic |
 | 'c' | Co-Author | Helped in deciding logic |
-| 'd' | Helped debug | Debugging code |
 | 'h' | Not author, but contributed later | Did not implement intial logic, but contributed later on in the project |
  
 ## Team Reflection:
