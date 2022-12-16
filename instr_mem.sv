@@ -16,7 +16,7 @@ logic [7:0]  rom_array   [2**ADDRESS_WIDTH-1:0];
 //logic [DATA_WIDTH-1:0]  rom_array   [5:0];
 
 initial begin
-        $readmemh("pdf.hex", rom_array);
+        $readmemh("f1_test.s", rom_array);
 end
 
 always_comb begin 

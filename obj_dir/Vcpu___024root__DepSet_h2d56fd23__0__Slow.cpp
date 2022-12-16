@@ -26,6 +26,7 @@ VL_ATTR_COLD void Vcpu___024root___initial__TOP__0(Vcpu___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___initial__TOP__0\n"); );
     // Init
     VlWide<3>/*95:0*/ __Vtemp_h2553e7c1__0;
+    VlWide<3>/*95:0*/ __Vtemp_h077fd25b__0;
     // Body
     __Vtemp_h2553e7c1__0[0U] = 0x2e6d656dU;
     __Vtemp_h2553e7c1__0[1U] = 0x7369616eU;
@@ -33,7 +34,10 @@ VL_ATTR_COLD void Vcpu___024root___initial__TOP__0(Vcpu___024root* vlSelf) {
     VL_READMEM_N(true, 32, 1048576, 0, VL_CVT_PACK_STR_NW(3, __Vtemp_h2553e7c1__0)
                  ,  &(vlSelf->cpu__DOT__MemFile__DOT__ram_array)
                  , 0x10000U, ~0ULL);
-    VL_READMEM_N(true, 8, 65536, 0, std::string{"pdf.hex"}
+    __Vtemp_h077fd25b__0[0U] = 0x73742e73U;
+    __Vtemp_h077fd25b__0[1U] = 0x315f7465U;
+    __Vtemp_h077fd25b__0[2U] = 0x66U;
+    VL_READMEM_N(true, 8, 65536, 0, VL_CVT_PACK_STR_NW(3, __Vtemp_h077fd25b__0)
                  ,  &(vlSelf->cpu__DOT__PCMem__DOT__rom_array)
                  , 0, ~0ULL);
 }
