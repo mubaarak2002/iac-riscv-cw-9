@@ -54,9 +54,9 @@ CID: 01928696
 ### Will Blayney: 
 
 
-Github Username:  
-Email:   
-CID:   
+Github Username:  blayney
+Email:   wb320@ic.ac.uk
+CID:   01884020
 
 #### Personal Statement:
 
