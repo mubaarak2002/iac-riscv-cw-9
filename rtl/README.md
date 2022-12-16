@@ -1,5 +1,20 @@
 # Team 9 - Single Cycle CPU
 
+## Our Design
+
+### Single Cycle
+
+On this branch (master), there is the single cycle RISC-V processor. The Diagram of the processor shows all the connections made, as well as their bit lengths. This processor was "chopped up", and a cache was added to form or pipelined and cached version.
+
+![](/rtl/videos/SingleCycle.png)
+
+
+The CPU is unpipelined, and thus data and control signals flow linearly from left to right in the diagram. It is a Harvard Architecture, and thus the data and instruction memories are seperate, and do not interact. The SystemVerilog files are constructed all entirely of fundamental blocks (except for the program counter), and thus there is only one top level file cpu.sv to connect all the sub modules together. The CPU design is very heavily inspired by 
+
+
+### Pipelined and Cached
+
+
 ## How to Test the Program:
 
 The execute files correspond to the relevant test benches for each of the programs. Each program will require a different instruction memory file to be loaded into instr_mem.sv. Below are steps to run each command:
