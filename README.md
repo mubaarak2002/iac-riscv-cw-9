@@ -6,6 +6,10 @@ The team hopes to complete the project, as well as the two extension tasks of pi
 
 ## Team Members and Personal Commitments:
 
+## Note From the Team on Initial Agreed Deliverables:
+
+As a team, we did not initially subdivied the tasks. We decided to dynamically allocate tasks for each member to do on a rolling basis. This did go directly in opposition of the advice from the module leader, however we decided it would be the most effective way of tackling this challenge. The logic behind this was it meant for an optimal usage of the members time, in that instead of waiting for group members they could crack on with the project. This sounds like an ineffective strategy, however the team was very respectful not to do too much or too little work, and it did result in a fair portion of the project being distributed evenly.
+
 ### Omar Ben-Gacem:
 
 Github Username: omarbengacem
@@ -14,8 +18,6 @@ CID: 01883771
 
 #### Personal Statement:
 I contributed many of the files to the single cycle cpu such as the decode block, alu and data memory. I also created the first draft of the cache, as well as the top level files for the single cycle CPU and pipeline-cached CPU. I also helped debug files that needed editing, as well as wrote the F1 program. I could improve on ensuring my files were written correctly, as many of my files needed medium to heavy debugging after being written, and I could be more thorough with my testing, as some of my functions were unknowingly incorrect as I did not test them.
-
-#### Initial Agreed Deliverables:
 
 
 ### Yomna Mohammed:
@@ -26,8 +28,6 @@ CID:
 
 #### Personal Statement:
 
-
-#### Initial Agreed Deliverables:
 
 
 
@@ -40,8 +40,6 @@ CID:
 #### Personal Statement:
 
 
-#### Initial Agreed Deliverables:
-
 
 
 ### Will Blaney:
@@ -52,10 +50,6 @@ Email:
 CID: 
 
 #### Personal Statement:
-
-
-#### Initial Agreed Deliverables:
-
 
 
 
