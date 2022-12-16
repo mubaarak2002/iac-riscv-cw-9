@@ -30,3 +30,4 @@ If a vbuddy is connected, the PDF should begin plotting after a short pause.
 ## Results:
 
 The team was able to implement all programs to work on the vbuddy, and below are videos of all the results:
+![](/videos/noisy.mp4)

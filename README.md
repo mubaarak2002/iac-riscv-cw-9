@@ -33,16 +33,16 @@ CID:
 
 ### Mubaarak Kahn:
 
-Github Username: 
-Email: 
-CID: 
+Github Username:  
+Email:  
+CID:  
 
 #### Personal Statement:
 
 
 
 
-### Will Blaney:
+### Will Blaney: 
 
 
 Github Username: 
