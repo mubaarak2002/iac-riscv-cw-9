@@ -35,8 +35,7 @@ The team was able to implement all programs to work on the vbuddy, and below are
 
 
 ### PDF of Noisy Data File
-<video src="rtl/videos/noisy.mp4" controls="controls" style="max-width: 730px;">
-</video>
+[![Noisy Data Video](videos/noisy.mp4)]
 
 
 ### PDF of Gaussian Data File
