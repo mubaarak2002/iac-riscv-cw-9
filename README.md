@@ -25,13 +25,11 @@ I contributed many of the files to the single cycle cpu such as the decode block
 ### Yomna Mohammed:
 
 Github Username:  YumiA
-
 Email:  ym2021@ic.ac.uk
-
 CID: 02027189
 
 #### Personal Statement:
-In Lab 4, I was responsible for working on the Instruction Memory, Control Unit, and the Sign Extend blocks. In this project, I started by working on a few blocks like the Sign Extend, Register File, Instruction Memory and etc. Following that I helped make edits and fix debugs of some other basic blocks as well created the README for our Instruction Set. Once the Single Cycle CPU was implemented, I was responsible for implementing the pipeline model and writing the pipeline MD which was based off of the Harris and Harris book model. After that I helped around where needed and debugged instructions. I believe I could have been more through with testing from the start and would have liked to contribute more to caching.
+In Lab 4, I was responsible for working on the Instruction Memory, Control Unit, and the Sign Extend blocks. In this project, I started by working on a few blocks like the Sign Extend, Instruction Memory and etc. Following that I helped make edits and fix debugs of some other basic blocks as well created the README for our Instruction Set. Once the Single Cycle CPU was implemented, I was responsible for implementing the pipeline model and writing the pipeline MD which was based off of the Harris and Harris book model. After that I helped around where needed and debugged instructions. I believe I could have been more thorough with testing from the start and would have liked to contribute more to caching.
 
 
 ### Mubaarak Kahn:
