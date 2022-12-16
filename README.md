@@ -2,7 +2,9 @@
 
 ## Team Statement:
 
-The team hopes to complete the project, as well as the two extension tasks of pipelining the RISC-V processor as well as implementing a cacheing system. The team intends to first do this by working to complete the base, single cycle (no cache) model of the CPU, and then alter that model into a pipelined model, then implement the cache. Our team hopes to implement all functional operations avalable in the RISC-V instruction set. This includes all branch, jump, arithmatic (immidiate and register), and upper immidiate instructions. Fence, interupt, CSR, and trap functions were not implemented.
+The team hopes to complete the project, as well as the two extension tasks of pipelining the RISC-V processor as well as implementing a cacheing system. The team intends to first do this by working to complete the base, single cycle (no cache) model of the CPU, and then alter that model into a pipelined model, then implement the cache. Our team hopes to implement all functional operations avalable in the RISC-V instruction set. This includes all branch, jump, arithmatic (immidiate and register), and upper immidiate instructions. Fence, interupt, CSR, and trap functions were not implemented.  
+
+To view the instruction set that our team has chosen to implement, see the readme in the instr_set file.
 
 ## Team Members and Personal Commitments:
 
