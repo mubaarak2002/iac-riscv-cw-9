@@ -24,9 +24,9 @@ I contributed many of the files to the single cycle cpu such as the decode block
 
 ### Yomna Mohammed:
 
-Github Username:  
-Email:  
-CID:  
+Github Username:  YumiA
+Email:  ym2021@ic.ac.uk
+CID: 02027189
 
 #### Personal Statement:
 
