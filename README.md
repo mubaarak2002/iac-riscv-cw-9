@@ -36,9 +36,9 @@ In Lab 4, I was responsible for working on the Instruction Memory, Control Unit,
 
 ### Mubaarak Kahn:
 
-Github Username:  
-Email:  
-CID:  
+Github Username: mubaarak2002
+Email: mmk120@ic.ac.uk
+CID: 01928696
 
 #### Personal Statement:
 
@@ -89,7 +89,7 @@ CID:
 | instr_set | a |  |  |  |
 | cache.sv |  | h |  |  |
 | cache_tb.cpp |  |  |  |  |
-| JumpLogic.sv |  |  |  |  |
+| JumpLogic.sv |  |  | a |  |
 | mux_3.sv | a |  |  |  |
 |  |  |  |  |  |
 
@@ -99,7 +99,6 @@ CID:
 | :------:    | :------: | :------: |
 | 'a' | Author | Implemented most of the file's logic |
 | 'c' | Co-Author | Helped in deciding logic |
-| 'd' | Helped debug | Debugging code |
 | 'h' | Not author, but contributed later | Did not implement intial logic, but contributed later on in the project |
  
 ## Team Reflection:
