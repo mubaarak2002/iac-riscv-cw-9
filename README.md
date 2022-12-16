@@ -55,8 +55,11 @@ CID: 01928696
 
 
 Github Username:  blayney
+
 Email:   wb320@ic.ac.uk
+
 CID:   01884020
+
 
 #### Personal Statement:
 
