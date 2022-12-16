@@ -95,10 +95,12 @@ CID:
 
 
 **Key**
-'a' = author
-'c' = coAuthor (when applicable)
-'d' = helped debug (if not authors)
-'h' = not author, but contributed later on 
+| Key      | Role | Description |
+| :------:    | :------: | :------: |
+| 'a' | Author | Implemented most of the file's logic |
+| 'c' | Co-Author | Helped in deciding logic |
+| 'd' | Helped debug | Debugging code |
+| 'h' | Not author, but contributed later | Did not implement intial logic, but contributed later on in the project |
  
 ## Team Reflection:
 
