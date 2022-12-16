@@ -74,32 +74,30 @@ Minimal contribution to final stages of project - please see relevant MCs. Yomna
 
 | module      | Yomna | Omar | Mubaraak | Will |
 | :------:    | :------: | :------: | :------: | :------: |
-| ALU.sv |  | a |  |  |
-| Data_Memory.sv |  |  |  |  |
-| Decode.sv |  | a |  |  |
-| DtoEReg.sv | a | h |  |  |
-| EtoMReg.sv | a | h |  |  |
-| FtoDReg.sv | a | h |  |  |
-| MtoWReg.sv | a | h |  |  |
-| PCTarget.sv | h |  |  |  |
-| PC_reg.sv |  |  |  |  |
-| ProgramCounter.sv |  |  |  |  |
-| README.md | c | a |  |  |
-| Sign_Extend.sv | a |  |  |  |
-| cpu.sv | h | a |  |  |
-| cpu_tb.cpp |  | a |  |  |
-| instr_mem.sv | a | h |  |  |
-| mux_2.sv | a |  |  |  |
-| pipeline.md | a |  |  |  |
-| reg_file.sv | h | a |  |  |
-| runCPU.sh |  | a |  |  |
-| instr_set | a |  |  |  |
-| cache.sv |  | h |  |  |
-| cache_tb.cpp |  |  |  |  |
-| F1_tb.cpp |  | a |  |  |
-| JumpLogic.sv |  |  |  |  |
-| mux_3.sv | a |  |  |  |
-|  |  |  |  |  |
+| ALU.sv |  | * |  |  |
+| Data_Memory.sv |  |  | * |  |
+| Decode.sv |  | * | X |  |
+| DtoEReg.sv | * | X | X |  |
+| EtoMReg.sv | * | X | X |  |
+| FtoDReg.sv | * | X | X |  |
+| MtoWReg.sv | * | X | X |  |
+| PCTarget.sv | X |  | * |  |
+| ProgramCounter.sv |  |  | * |  |
+| README.md | * | * |  |  |
+| Sign_Extend.sv | * |  |  |  |
+| cpu.sv | X | * | X |  |
+| cpu_tb.cpp |  | * | X |  |
+| instr_mem.sv | * | X | X |  |
+| mux_2.sv | * |  |  |  |
+| pipeline.md | * |  |  |  |
+| reg_file.sv | X | * |  |  |
+| runCPU.sh |  | * |  |  |
+| instr_set | * |  |  |  |
+| cache.sv |  | X | * |  |
+| cache_tb.cpp |  |  | * |  |
+| F1_tb.cpp |  | * |  |  |
+| JumpLogic.sv |  |  | * |  |
+| mux_3.sv | * |  |  |  |
 
 
 **Key**
