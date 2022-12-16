@@ -12,9 +12,9 @@ As a team, we did not initially subdivied the tasks. We decided to dynamically a
 
 ### Omar Ben-Gacem:
 
-Github Username: omarbengacem
-Email: ob420@ic.ac.uk
-CID: 01883771
+Github Username: omarbengacem  
+Email: ob420@ic.ac.uk  
+CID: 01883771  
 
 #### Personal Statement:
 I contributed many of the files to the single cycle cpu such as the decode block, alu and data memory. I also created the first draft of the cache, as well as the top level files for the single cycle CPU and pipeline-cached CPU. I also helped debug files that needed editing, as well as wrote the F1 program. I could improve on ensuring my files were written correctly, as many of my files needed medium to heavy debugging after being written, and I could be more thorough with my testing, as some of my functions were unknowingly incorrect as I did not test them.
@@ -22,9 +22,9 @@ I contributed many of the files to the single cycle cpu such as the decode block
 
 ### Yomna Mohammed:
 
-Github Username: 
-Email: 
-CID: 
+Github Username:  
+Email:  
+CID:  
 
 #### Personal Statement:
 
@@ -45,9 +45,9 @@ CID:
 ### Will Blaney: 
 
 
-Github Username: 
-Email: 
-CID: 
+Github Username:  
+Email:   
+CID:   
 
 #### Personal Statement:
 
