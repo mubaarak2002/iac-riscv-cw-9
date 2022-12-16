@@ -31,6 +31,18 @@ If a vbuddy is connected, the PDF should begin plotting after a short pause.
 
 The team was able to implement all programs to work on the vbuddy, and below are videos of all the results:
 
+### PDF of Formula 1 File
 
-https://github.com/EIE2-IAC-Labs/iac-riscv-cw-9/blob/f91b60183258e4e017c8324814bfca433db1403f/rtl/videos/noisy.mp4
-<a href="{https://github.com/EIE2-IAC-Labs/iac-riscv-cw-9/blob/f91b60183258e4e017c8324814bfca433db1403f/rtl/videos/noisy.mp4}" title="Link Title"><img src="{image-url}" alt="Alternate Text" /></a>
+
+### PDF of Noisy Data File
+<video src="rtl/videos/noisy.mp4" controls="controls" style="max-width: 730px;">
+</video>
+
+
+### PDF of Gaussian Data File
+
+
+### PDF of Sine Data File
+
+
+### PDF of Triangle Data File
