@@ -30,4 +30,7 @@ If a vbuddy is connected, the PDF should begin plotting after a short pause.
 ## Results:
 
 The team was able to implement all programs to work on the vbuddy, and below are videos of all the results:
-![](/videos/noisy.mp4)
+
+
+https://github.com/EIE2-IAC-Labs/iac-riscv-cw-9/blob/f91b60183258e4e017c8324814bfca433db1403f/rtl/videos/noisy.mp4
+<a href="{https://github.com/EIE2-IAC-Labs/iac-riscv-cw-9/blob/f91b60183258e4e017c8324814bfca433db1403f/rtl/videos/noisy.mp4}" title="Link Title"><img src="{image-url}" alt="Alternate Text" /></a>
