@@ -32,16 +32,21 @@ If a vbuddy is connected, the PDF should begin plotting after a short pause.
 The team was able to implement all programs to work on the vbuddy, and below are videos of all the results:
 
 ### PDF of Formula 1 File
+https://youtube.com/shorts/bpn-pUrOQ-U?feature=share
 
 
 ### PDF of Noisy Data File
-[![Noisy Data Video](videos/noisy.mp4)]
+https://youtube.com/shorts/cATN2SxZqAs?feature=share
 
 
 ### PDF of Gaussian Data File
+https://youtube.com/shorts/fZy88M6KGbo?feature=share
 
 
 ### PDF of Sine Data File
+https://youtube.com/shorts/r_wv4N8ye9E?feature=share
 
 
 ### PDF of Triangle Data File
+https://youtube.com/shorts/aMlT6UiXkZQ?feature=share
+
