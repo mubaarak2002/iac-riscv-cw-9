@@ -47,7 +47,7 @@ Email: mmk120@ic.ac.uk
 CID: 01928696
 
 #### Personal Statement:
-
+Initially I was responsible for the program counter block. 
 
 
 
