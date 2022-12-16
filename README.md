@@ -37,7 +37,9 @@ In Lab 4, I was responsible for working on the Instruction Memory, Control Unit,
 ### Mubaarak Kahn:
 
 Github Username: mubaarak2002
+
 Email: mmk120@ic.ac.uk
+
 CID: 01928696
 
 #### Personal Statement:
