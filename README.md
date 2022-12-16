@@ -1,4 +1,6 @@
 # Group 9
+### Note
+As we deleted other branches we worked on, including the inital Pipeline branch, I (Yomna) am unable to link the commits where I implemented these contributions
 
 ## Branch Designations: 
 
