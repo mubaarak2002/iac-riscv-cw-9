@@ -1,5 +1,9 @@
 # Group 9
 
+## Branch Designations: 
+
+On this branch (master), there is the single cycle RISC-V processor. The Diagram of the processor shows all the connections made, as well as their bit lengths. This processor was "chopped up", and a cache was added to form or pipelined and cached version. This can be found on the branch named "Advanced", along with a full technical writeup of all changes made as well as added logic and modules.
+
 ## Team Statement:
 
 The team hopes to complete the project, as well as the two extension tasks of pipelining the RISC-V processor as well as implementing a cacheing system. The team intends to first do this by working to complete the base, single cycle (no cache) model of the CPU, and then alter that model into a pipelined model, then implement the cache. Our team hopes to implement all functional operations avalable in the RISC-V instruction set. This includes all branch, jump, arithmatic (immidiate and register), and upper immidiate instructions. Fence, interupt, CSR, and trap functions were not implemented.  

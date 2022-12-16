@@ -4,7 +4,7 @@
 
 ### Single Cycle
 
-On this branch (master), there is the single cycle RISC-V processor. The Diagram of the processor shows all the connections made, as well as their bit lengths. This processor was "chopped up", and a cache was added to form or pipelined and cached version.
+On this branch (master), there is the single cycle RISC-V processor. The Diagram of the processor shows all the connections made, as well as their bit lengths. This processor was "chopped up", and a cache was added to form or pipelined and cached version. This can be found on the branch named "Advanced", along with a full technical writeup of all changes made as well as added logic and modules.
 
 ![](/rtl/videos/SingleCycle.png)
 
