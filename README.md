@@ -84,7 +84,7 @@ Minimal contribution to final stages of project - please see relevant MCs. Yomna
 | FtoDReg.sv | * | X | X |  |
 | MtoWReg.sv | * | X | X |  |
 | PCTarget.sv | X |  | * |  |
-| ProgramCounter.sv |  |  | * |  |
+| ProgramCounter.sv | X |  | * |  |
 | README.md | * | * |  |  |
 | Sign_Extend.sv | * |  |  |  |
 | cpu.sv | X | * | X |  |
