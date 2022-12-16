@@ -9,10 +9,11 @@ On this branch (master), there is the single cycle RISC-V processor. The Diagram
 ![](/rtl/videos/SingleCycle.png)
 
 
-The CPU is unpipelined, and thus data and control signals flow linearly from left to right in the diagram. It is a Harvard Architecture, and thus the data and instruction memories are seperate, and do not interact. The SystemVerilog files are constructed all entirely of fundamental blocks (except for the program counter), and thus there is only one top level file cpu.sv to connect all the sub modules together. The CPU design is very heavily inspired by 
-
+The CPU is unpipelined, and thus data and control signals flow linearly from left to right in the diagram. It is a Harvard Architecture, and thus the data and instruction memories are seperate, and do not interact. The SystemVerilog files are constructed all entirely of fundamental blocks (except for the program counter), and thus there is only one top level file cpu.sv to connect all the sub modules together. The CPU design is very heavily inspired by Digital Design and Computer Architecture by Harris/Harris (*Harris, Sarah and David, Harris. DIGITAL DESIGN and COMPUTER ARCHITECTURE : Risc-v Edition. S.L., Morgan Kaufmann Publisher, 2021.*).
 
 ### Pipelined and Cached
+
+To view the pipeline/cached verison of this CPU, as well as a full technical breakdown of all changes made, switch to the "advanced" branch, and within that branch will be the fully functional pipelined and cached version of this CPU.
 
 
 ## How to Test the Program:
