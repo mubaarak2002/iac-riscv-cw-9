@@ -36,6 +36,7 @@ Vcpu::Vcpu(VerilatedContext* _vcontextp__, const char* _vcname__)
     , MemData_Out{vlSymsp->TOP.MemData_Out}
     , ImmOp_Out{vlSymsp->TOP.ImmOp_Out}
     , Data_Out{vlSymsp->TOP.Data_Out}
+    , a0{vlSymsp->TOP.a0}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

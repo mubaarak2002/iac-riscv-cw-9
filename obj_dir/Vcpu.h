@@ -50,6 +50,7 @@ class Vcpu VL_NOT_FINAL : public VerilatedModel {
     VL_OUT(&MemData_Out,31,0);
     VL_OUT(&ImmOp_Out,24,0);
     VL_OUT(&Data_Out,31,0);
+    VL_OUT(&a0,31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

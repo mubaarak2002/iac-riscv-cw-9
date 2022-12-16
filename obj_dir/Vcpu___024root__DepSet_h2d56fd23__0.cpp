@@ -50,6 +50,8 @@ VL_INLINE_OPT void Vcpu___024root___sequent__TOP__0(Vcpu___024root* vlSelf) {
         vlSelf->cpu__DOT__RegFile__DOT__rom_array[__Vdlyvdim0__cpu__DOT__RegFile__DOT__rom_array__v0] 
             = __Vdlyvval__cpu__DOT__RegFile__DOT__rom_array__v0;
     }
+    vlSelf->a0 = vlSelf->cpu__DOT__RegFile__DOT__rom_array
+        [0xaU];
 }
 
 VL_INLINE_OPT void Vcpu___024root___sequent__TOP__1(Vcpu___024root* vlSelf) {
@@ -105,6 +107,12 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                                                     & (vlSelf->cpu__DOT__Instr 
                                                        >> 0xcU)));
     vlSelf->cpu__DOT__isJALR = (0x67U == (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode));
+    vlSelf->cpu__DOT__Decoder__DOT__cacheEn = (((0x23U 
+                                                 == (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode)) 
+                                                | (3U 
+                                                   == (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode)))
+                                                ? 1U
+                                                : 0U);
     if ((0x40U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
         if ((0x20U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
             if ((0x10U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
@@ -127,7 +135,8 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                             vlSelf->cpu__DOT__RA1 = vlSelf->cpu__DOT__Decoder__DOT__rs1;
                             vlSelf->cpu__DOT__RA2 = vlSelf->cpu__DOT__Decoder__DOT__rs2;
                             vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__rd;
-                            vlSelf->cpu__DOT__WEn = 1U;
+                            vlSelf->cpu__DOT__WEn = 
+                                (7U != (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode));
                             vlSelf->cpu__DOT__ALUsrc = 1U;
                             vlSelf->cpu__DOT__ALUctrl = 0U;
                             vlSelf->cpu__DOT__Resultsrc = 2U;
@@ -227,16 +236,22 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                     if ((4U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
                         if ((2U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
                             if ((1U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
-                                vlSelf->cpu__DOT__RA1 = 0U;
-                                vlSelf->cpu__DOT__RA2 = 0U;
-                                vlSelf->cpu__DOT__WA3 = 0U;
+                                vlSelf->cpu__DOT__RA1 
+                                    = vlSelf->cpu__DOT__Decoder__DOT__rs1;
+                                vlSelf->cpu__DOT__RA2 
+                                    = vlSelf->cpu__DOT__Decoder__DOT__rs2;
+                                vlSelf->cpu__DOT__WA3 
+                                    = vlSelf->cpu__DOT__Decoder__DOT__r0;
                                 vlSelf->cpu__DOT__WEn = 0U;
-                                vlSelf->cpu__DOT__ALUsrc = 1U;
-                                vlSelf->cpu__DOT__ALUctrl = 0U;
+                                vlSelf->cpu__DOT__ALUsrc = 0U;
+                                vlSelf->cpu__DOT__ALUctrl = 3U;
                                 vlSelf->cpu__DOT__Resultsrc = 0U;
-                                vlSelf->cpu__DOT__PCsrc = 0U;
-                                vlSelf->cpu__DOT__ImmOp = 0U;
-                                vlSelf->cpu__DOT__ImmSel = 0U;
+                                vlSelf->cpu__DOT__PCsrc 
+                                    = ((IData)(vlSelf->cpu__DOT__zero)
+                                        ? 0U : 1U);
+                                vlSelf->cpu__DOT__ImmOp 
+                                    = vlSelf->cpu__DOT__Decoder__DOT__Imm;
+                                vlSelf->cpu__DOT__ImmSel = 7U;
                                 vlSelf->cpu__DOT__MemWrite = 0U;
                                 vlSelf->cpu__DOT__PC_to_Extend = 0U;
                             } else {
@@ -260,16 +275,19 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
                                 vlSelf->cpu__DOT__PC_to_Extend = 0U;
                             }
                         } else if ((1U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
-                            vlSelf->cpu__DOT__RA1 = 0U;
-                            vlSelf->cpu__DOT__RA2 = 0U;
-                            vlSelf->cpu__DOT__WA3 = 0U;
+                            vlSelf->cpu__DOT__RA1 = vlSelf->cpu__DOT__Decoder__DOT__rs1;
+                            vlSelf->cpu__DOT__RA2 = vlSelf->cpu__DOT__Decoder__DOT__rs2;
+                            vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__r0;
                             vlSelf->cpu__DOT__WEn = 0U;
-                            vlSelf->cpu__DOT__ALUsrc = 1U;
-                            vlSelf->cpu__DOT__ALUctrl = 0U;
+                            vlSelf->cpu__DOT__ALUsrc = 0U;
+                            vlSelf->cpu__DOT__ALUctrl = 2U;
                             vlSelf->cpu__DOT__Resultsrc = 0U;
-                            vlSelf->cpu__DOT__PCsrc = 0U;
-                            vlSelf->cpu__DOT__ImmOp = 0U;
-                            vlSelf->cpu__DOT__ImmSel = 0U;
+                            vlSelf->cpu__DOT__PCsrc 
+                                = ((IData)(vlSelf->cpu__DOT__zero)
+                                    ? 0U : 1U);
+                            vlSelf->cpu__DOT__ImmOp 
+                                = vlSelf->cpu__DOT__Decoder__DOT__Imm;
+                            vlSelf->cpu__DOT__ImmSel = 7U;
                             vlSelf->cpu__DOT__MemWrite = 0U;
                             vlSelf->cpu__DOT__PC_to_Extend = 0U;
                         } else {
@@ -682,7 +700,7 @@ VL_INLINE_OPT void Vcpu___024root___combo__TOP__1(Vcpu___024root* vlSelf) {
             vlSelf->cpu__DOT__PCsrc = 0U;
             vlSelf->cpu__DOT__ImmOp = vlSelf->cpu__DOT__Decoder__DOT__Imm;
             vlSelf->cpu__DOT__ImmSel = 4U;
-            vlSelf->cpu__DOT__MemWrite = 1U;
+            vlSelf->cpu__DOT__MemWrite = 0U;
             vlSelf->cpu__DOT__PC_to_Extend = 0U;
         } else {
             vlSelf->cpu__DOT__RA1 = 0U;
@@ -940,7 +958,7 @@ VL_INLINE_OPT QData Vcpu___024root___change_request_1(Vcpu___024root* vlSelf) {
     // Change detection
     QData __req = false;  // Logically a bool
     __req |= ((vlSelf->cpu__DOT__zero ^ vlSelf->__Vchglast__TOP__cpu__DOT__zero));
-    VL_DEBUG_IF( if(__req && ((vlSelf->cpu__DOT__zero ^ vlSelf->__Vchglast__TOP__cpu__DOT__zero))) VL_DBG_MSGF("        CHANGE: cpu.sv:71: cpu.zero\n"); );
+    VL_DEBUG_IF( if(__req && ((vlSelf->cpu__DOT__zero ^ vlSelf->__Vchglast__TOP__cpu__DOT__zero))) VL_DBG_MSGF("        CHANGE: cpu.sv:72: cpu.zero\n"); );
     // Final
     vlSelf->__Vchglast__TOP__cpu__DOT__zero = vlSelf->cpu__DOT__zero;
     return __req;

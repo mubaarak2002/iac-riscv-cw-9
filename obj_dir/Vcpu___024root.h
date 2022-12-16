@@ -44,6 +44,7 @@ class Vcpu___024root final : public VerilatedModule {
         CData/*7:0*/ cpu__DOT__PCMem__DOT__instrByte2;
         CData/*7:0*/ cpu__DOT__PCMem__DOT__instrByte3;
         CData/*7:0*/ cpu__DOT__PCMem__DOT__instrByte4;
+        CData/*0:0*/ cpu__DOT__Decoder__DOT__cacheEn;
         CData/*4:0*/ cpu__DOT__Decoder__DOT__rd;
         CData/*4:0*/ cpu__DOT__Decoder__DOT__rs1;
         CData/*4:0*/ cpu__DOT__Decoder__DOT__rs2;
@@ -73,14 +74,15 @@ class Vcpu___024root final : public VerilatedModule {
         VL_OUT(MemData_Out,31,0);
         VL_OUT(ImmOp_Out,24,0);
         VL_OUT(Data_Out,31,0);
+        VL_OUT(a0,31,0);
         IData/*31:0*/ cpu__DOT__MemWrAdd;
         IData/*31:0*/ cpu__DOT__RD1;
         IData/*31:0*/ cpu__DOT__RD2;
         IData/*31:0*/ cpu__DOT__Instr;
-        IData/*24:0*/ cpu__DOT__ImmOp;
-        IData/*31:0*/ cpu__DOT__ImmExt;
     };
     struct {
+        IData/*24:0*/ cpu__DOT__ImmOp;
+        IData/*31:0*/ cpu__DOT__ImmExt;
         IData/*31:0*/ cpu__DOT__ALU_OP2;
         IData/*31:0*/ cpu__DOT__ALU_Result;
         IData/*31:0*/ cpu__DOT__DOut;

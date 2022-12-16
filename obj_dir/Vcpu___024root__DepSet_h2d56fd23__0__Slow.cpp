@@ -16,14 +16,21 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__0(Vcpu___024root* vlSelf) {
     vlSelf->PC_new_Out = vlSelf->cpu__DOT__PC_new;
     vlSelf->Decode_PC_Out = vlSelf->cpu__DOT__PC_to_PCreg;
     vlSelf->PC_Out = vlSelf->cpu__DOT__PC;
+    vlSelf->a0 = vlSelf->cpu__DOT__RegFile__DOT__rom_array
+        [0xaU];
 }
 
 VL_ATTR_COLD void Vcpu___024root___initial__TOP__0(Vcpu___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcpu___024root___initial__TOP__0\n"); );
+    // Init
+    VlWide<3>/*95:0*/ __Vtemp_h2553e7c1__0;
     // Body
-    VL_READMEM_N(true, 32, 1048576, 0, std::string{"sine.mem"}
+    __Vtemp_h2553e7c1__0[0U] = 0x2e6d656dU;
+    __Vtemp_h2553e7c1__0[1U] = 0x7369616eU;
+    __Vtemp_h2553e7c1__0[2U] = 0x67617573U;
+    VL_READMEM_N(true, 32, 1048576, 0, VL_CVT_PACK_STR_NW(3, __Vtemp_h2553e7c1__0)
                  ,  &(vlSelf->cpu__DOT__MemFile__DOT__ram_array)
                  , 0x10000U, ~0ULL);
     VL_READMEM_N(true, 8, 65536, 0, std::string{"pdf.hex"}
@@ -74,6 +81,12 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
                                                     & (vlSelf->cpu__DOT__Instr 
                                                        >> 0xcU)));
     vlSelf->cpu__DOT__isJALR = (0x67U == (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode));
+    vlSelf->cpu__DOT__Decoder__DOT__cacheEn = (((0x23U 
+                                                 == (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode)) 
+                                                | (3U 
+                                                   == (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode)))
+                                                ? 1U
+                                                : 0U);
     if ((0x40U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
         if ((0x20U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
             if ((0x10U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__opcode))) {
@@ -96,7 +109,8 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
                             vlSelf->cpu__DOT__RA1 = vlSelf->cpu__DOT__Decoder__DOT__rs1;
                             vlSelf->cpu__DOT__RA2 = vlSelf->cpu__DOT__Decoder__DOT__rs2;
                             vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__rd;
-                            vlSelf->cpu__DOT__WEn = 1U;
+                            vlSelf->cpu__DOT__WEn = 
+                                (7U != (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode));
                             vlSelf->cpu__DOT__ALUsrc = 1U;
                             vlSelf->cpu__DOT__ALUctrl = 0U;
                             vlSelf->cpu__DOT__Resultsrc = 2U;
@@ -196,16 +210,22 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
                     if ((4U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
                         if ((2U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
                             if ((1U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
-                                vlSelf->cpu__DOT__RA1 = 0U;
-                                vlSelf->cpu__DOT__RA2 = 0U;
-                                vlSelf->cpu__DOT__WA3 = 0U;
+                                vlSelf->cpu__DOT__RA1 
+                                    = vlSelf->cpu__DOT__Decoder__DOT__rs1;
+                                vlSelf->cpu__DOT__RA2 
+                                    = vlSelf->cpu__DOT__Decoder__DOT__rs2;
+                                vlSelf->cpu__DOT__WA3 
+                                    = vlSelf->cpu__DOT__Decoder__DOT__r0;
                                 vlSelf->cpu__DOT__WEn = 0U;
-                                vlSelf->cpu__DOT__ALUsrc = 1U;
-                                vlSelf->cpu__DOT__ALUctrl = 0U;
+                                vlSelf->cpu__DOT__ALUsrc = 0U;
+                                vlSelf->cpu__DOT__ALUctrl = 3U;
                                 vlSelf->cpu__DOT__Resultsrc = 0U;
-                                vlSelf->cpu__DOT__PCsrc = 0U;
-                                vlSelf->cpu__DOT__ImmOp = 0U;
-                                vlSelf->cpu__DOT__ImmSel = 0U;
+                                vlSelf->cpu__DOT__PCsrc 
+                                    = ((IData)(vlSelf->cpu__DOT__zero)
+                                        ? 0U : 1U);
+                                vlSelf->cpu__DOT__ImmOp 
+                                    = vlSelf->cpu__DOT__Decoder__DOT__Imm;
+                                vlSelf->cpu__DOT__ImmSel = 7U;
                                 vlSelf->cpu__DOT__MemWrite = 0U;
                                 vlSelf->cpu__DOT__PC_to_Extend = 0U;
                             } else {
@@ -229,16 +249,19 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
                                 vlSelf->cpu__DOT__PC_to_Extend = 0U;
                             }
                         } else if ((1U & (IData)(vlSelf->cpu__DOT__Decoder__DOT__branchcode))) {
-                            vlSelf->cpu__DOT__RA1 = 0U;
-                            vlSelf->cpu__DOT__RA2 = 0U;
-                            vlSelf->cpu__DOT__WA3 = 0U;
+                            vlSelf->cpu__DOT__RA1 = vlSelf->cpu__DOT__Decoder__DOT__rs1;
+                            vlSelf->cpu__DOT__RA2 = vlSelf->cpu__DOT__Decoder__DOT__rs2;
+                            vlSelf->cpu__DOT__WA3 = vlSelf->cpu__DOT__Decoder__DOT__r0;
                             vlSelf->cpu__DOT__WEn = 0U;
-                            vlSelf->cpu__DOT__ALUsrc = 1U;
-                            vlSelf->cpu__DOT__ALUctrl = 0U;
+                            vlSelf->cpu__DOT__ALUsrc = 0U;
+                            vlSelf->cpu__DOT__ALUctrl = 2U;
                             vlSelf->cpu__DOT__Resultsrc = 0U;
-                            vlSelf->cpu__DOT__PCsrc = 0U;
-                            vlSelf->cpu__DOT__ImmOp = 0U;
-                            vlSelf->cpu__DOT__ImmSel = 0U;
+                            vlSelf->cpu__DOT__PCsrc 
+                                = ((IData)(vlSelf->cpu__DOT__zero)
+                                    ? 0U : 1U);
+                            vlSelf->cpu__DOT__ImmOp 
+                                = vlSelf->cpu__DOT__Decoder__DOT__Imm;
+                            vlSelf->cpu__DOT__ImmSel = 7U;
                             vlSelf->cpu__DOT__MemWrite = 0U;
                             vlSelf->cpu__DOT__PC_to_Extend = 0U;
                         } else {
@@ -651,7 +674,7 @@ VL_ATTR_COLD void Vcpu___024root___settle__TOP__1(Vcpu___024root* vlSelf) {
             vlSelf->cpu__DOT__PCsrc = 0U;
             vlSelf->cpu__DOT__ImmOp = vlSelf->cpu__DOT__Decoder__DOT__Imm;
             vlSelf->cpu__DOT__ImmSel = 4U;
-            vlSelf->cpu__DOT__MemWrite = 1U;
+            vlSelf->cpu__DOT__MemWrite = 0U;
             vlSelf->cpu__DOT__PC_to_Extend = 0U;
         } else {
             vlSelf->cpu__DOT__RA1 = 0U;
@@ -928,6 +951,7 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     vlSelf->Decode_PC_Out = VL_RAND_RESET_I(16);
     vlSelf->WrAddr_Out = VL_RAND_RESET_I(5);
     vlSelf->Data_Out = VL_RAND_RESET_I(32);
+    vlSelf->a0 = VL_RAND_RESET_I(32);
     vlSelf->cpu__DOT__PC = VL_RAND_RESET_I(16);
     vlSelf->cpu__DOT__PC_new = VL_RAND_RESET_I(16);
     vlSelf->cpu__DOT__PC_to_PCreg = VL_RAND_RESET_I(16);
@@ -963,6 +987,7 @@ VL_ATTR_COLD void Vcpu___024root___ctor_var_reset(Vcpu___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<65536; ++__Vi0) {
         vlSelf->cpu__DOT__PCMem__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(8);
     }
+    vlSelf->cpu__DOT__Decoder__DOT__cacheEn = VL_RAND_RESET_I(1);
     vlSelf->cpu__DOT__Decoder__DOT__rd = VL_RAND_RESET_I(5);
     vlSelf->cpu__DOT__Decoder__DOT__rs1 = VL_RAND_RESET_I(5);
     vlSelf->cpu__DOT__Decoder__DOT__rs2 = VL_RAND_RESET_I(5);
