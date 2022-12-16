@@ -101,11 +101,10 @@ Minimal contribution to final stages of project - please see relevant MCs. Yomna
 
 
 **Key**
-| Key      | Role | Description |
-| :------:    | :------: | :------: |
-| 'a' | Author | Implemented most of the file's logic |
-| 'c' | Co-Author | Helped in deciding logic |
-| 'h' | Not author, but contributed later | Did not implement intial logic, but contributed later on in the project |
+| Key      | Role | 
+| :------:    | :------: | 
+| * | Principal Contributor | 
+| x | Also helped | 
  
 ## Team Reflection:
 
